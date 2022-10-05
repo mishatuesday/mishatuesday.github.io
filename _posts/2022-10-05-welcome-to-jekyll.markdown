@@ -23,7 +23,7 @@ I am attending an intensive 15-week **coding bootcamp** which I started on Septe
 
 One of the requirements of the Flatiron course is to do a tech blog, so here's episode one.
 
-I've chosen to use Jekyll for my blog, mostly because it was listed as "if you want a challenge" in Flatiron's course (which choice I'm now seriously questioning as I'm having increasing issues with git). I'm writing this post in VSCode, and when I'm done I will figure out how to post it on [GitHub Pages][github-pages]. *(of course if you're seeing this that step has now been done)* *(wow, I'm having a hard time publishing because I did something wrong between my local git and GitHub--both are new to me...)
+I've chosen to use Jekyll for my blog, mostly because it was listed as "if you want a challenge" in Flatiron's course (which choice I seriously questioned for hours while having issues from my novice misuse of Git and GitHub). I'm writing this post in VSCode, and when I'm done I will figure out how to post it on [GitHub Pages][github-pages]. *(of course if you're seeing this I learned what I needed to learn about Git)*
 
 The below paragraph is from Jekyll's default first post, and I'm leaving it here so I have an easy reference of how to do links in [Markdown][markdown-guide].  Unlike HTML or wiki, the URLs are not inline. They're defined elsewhere in the document and included by reference. I'll `codify` it afterwards so you can see the raw version...
 
