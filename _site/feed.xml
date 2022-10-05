@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-05T14:07:10-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">I’d Rather Be Coding</title><subtitle>A hypnotist returning to one of his former passions: coding. You could say I've gone from programming computers to programming people and back again.</subtitle><entry><title type="html">Hello, Blogosphere!</title><link href="http://localhost:4000/jekyll/update/2022/10/05/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello, Blogosphere!" /><published>2022-10-05T11:38:45-04:00</published><updated>2022-10-05T11:38:45-04:00</updated><id>http://localhost:4000/jekyll/update/2022/10/05/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2022/10/05/welcome-to-jekyll.html"><![CDATA[<p>I actually hate the word Blogosphere, but I thought <code class="language-plaintext highlighter-rouge">Hello, World!</code> would be an even worse first post title.</p>
+
+<p><strong>TL; DR: I used to do web coding and am getting back into the industry.</strong></p>
+
+<p>Hi, I’m Misha Tuesday, and my eclectic career cluster has professionally included, roughly in this order: potato farmer, musician, water bottling plant supervisor, database administrator, web developer, sprout farmer, truck driver, puppeteer, developmental disability advocate, clown, magician, and hypnotist.</p>
+
+<p><em>Surprisingly, I have never had a diagnosis of ADD.</em></p>
+
+<center><p class="image-right"><img src="https://media-exp1.licdn.com/dms/image/C5616AQHaMBmEoqylhg/profile-displaybackgroundimage-shrink_350_1400/0/1663003871455?e=1670457600&amp;v=beta&amp;t=ZtufIwzlbF_dU4MSwKpIBAbVwoa_0WglUZU4Xow6oUw" alt="DALL-E renders of 'a hypnotist programming a computer in 80s clip art style'" /><i><a href="https://openai.com/dall-e-2/">DALL-E 2</a> renders of 'a hypnotist programming a computer in 80s clip art style'</i></p></center>
+
+<p>For the last several years, I’ve been a self-employed solopreneur (mostly doing magic and hypnosis shows), but since performing and hypnotizing people mostly happens in-person*, the COVID-19 pandemic destroyed my business.  Yes, things are coming back, but while in career freefall I decided to get back to something I love: <em>coding</em>.  It can be done remotely, it usually pays very well, and I find it very satisfying.</p>
+
+<p>I also find that as I get older, I get more… well, not introverted exactly, but less extremely extroverted, perhaps? Anyway the idea of working from home instead of going out and being on stage has increasing appeal for me for many reasons.</p>
+
+<p>I am attending an intensive 15-week <strong>coding bootcamp</strong> which I started on September 19, 2022.  The program I chose was <a href="https://flatironschool.com/">Flatiron School</a>’s Software Engineering program.  They teach JavaScript, React, Ruby, and Rails. <em>Side note: I previously used pre-ES6 JavaScript, CSS, HTML, PHP, several flavors of SQL, and the now-defunct Munch and Lunch (from back in my Borders.com days)</em></p>
+
+<p>One of the requirements of the Flatiron course is to do a tech blog, so here’s episode one.</p>
+
+<p>I’ve chosen to use Jekyll for my blog, mostly because it was listed as “if you want a challenge” in Flatiron’s course. I’m writing this post in VSCode, and when I’m done I will figure out how to post it on <a href="https://pages.github.com/">GitHub Pages</a>. <em>(of course if you’re seeing this that step has now been done)</em></p>
+
+<p>The below paragraph is from Jekyll’s default first post, and I’m leaving it here so I have an easy reference of how to do links in <a href="https://www.markdownguide.org/">Markdown</a>.  Unlike HTML or wiki, the URLs are not inline. They’re defined elsewhere in the document and included by reference. I’ll <code class="language-plaintext highlighter-rouge">codify</code> it afterwards so you can see the raw version…</p>
+
+<h3 id="paragraph-in-browser">paragraph in-browser:</h3>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+
+<h3 id="paragraph-source">paragraph source:</h3>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Check out the <span class="p">[</span><span class="nv">Jekyll docs</span><span class="p">][</span><span class="ss">jekyll-docs</span><span class="p">]</span> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <span class="p">[</span><span class="nv">Jekyll’s GitHub repo</span><span class="p">][</span><span class="ss">jekyll-gh</span><span class="p">]</span>. If you have questions, you can ask them on <span class="p">[</span><span class="nv">Jekyll Talk</span><span class="p">][</span><span class="ss">jekyll-talk</span><span class="p">]</span>.
+
+<span class="p">[</span><span class="ss">jekyll-docs</span><span class="p">]:</span> <span class="sx">https://jekyllrb.com/docs/home</span>
+<span class="p">[</span><span class="ss">jekyll-gh</span><span class="p">]:</span>   <span class="sx">https://github.com/jekyll/jekyll</span>
+<span class="p">[</span><span class="ss">jekyll-talk</span><span class="p">]:</span> <span class="sx">https://talk.jekyllrb.com/</span></code></pre></figure>
+
+<p>* P.S. Performing and hypnotizing can of course be done on Zoom, but if I’m gonna be sitting in front of a monitor, <strong>I’d rather be coding!</strong></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[I actually hate the word Blogosphere, but I thought Hello, World! would be an even worse first post title.]]></summary></entry></feed>
