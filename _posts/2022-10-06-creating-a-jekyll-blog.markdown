@@ -6,7 +6,7 @@ categories: jekyll update
 ---
 ## A very hand-holding walkthrough...
 
-I make no claims that this is the *only way* or even the *best way* to create a Jekyll blog and post it to GitHub pages. I'm just documenting the method I used as a complete newcomer to Jekyll, Git and GitHub.
+I make no claims that this is the *only way* or even the *best way* to create a Jekyll blog and post it to GitHub Pages. I'm just documenting the method I used as a complete newcomer to Jekyll, Git and GitHub.
 
 ### What you need: 
 - A terminal program to access your shell (I use zsh) 
@@ -16,7 +16,7 @@ I make no claims that this is the *only way* or even the *best way* to create a 
 
 ### Create local site
 
-**First, install Jekyll**
+**First, install Jekyll from your terminal**
 
 `gem install jekyll bundler`
 
@@ -34,7 +34,7 @@ and
 
 `_config.yml`
 
-The folder `_posts` is where all your posts will go; the one that’s alreasy in there is Jekyll’s default post. For ease of creating your first post, I recommend just going into the default post and replacing the content with your own. But do not remove the part that says: 
+The folder `_posts` is where all your posts will go; the one that’s already in there is Jekyll’s default post. For ease of creating your first post, I recommend just going into the default post and replacing the content with your own. But do not remove the part that says: 
 {% highlight markdown %}
 ---
 layout: post
@@ -44,6 +44,8 @@ categories: jekyll update
 ---
 {% endhighlight %}
 That must be at the top of every post file. You can/should change the title (quotes required) and even the date if you need to (but if you future date it, it won't show up on the site til then). But don’t change the structure of that header.
+
+The `_config.yml` file is where you set things like your blog's title, your name, your email, etc. Don't change anything you don't understand.
 
 **Creating new posts**
 
@@ -57,23 +59,29 @@ date:   2022-10-05 11:38:45 -0400
 categories: jekyll update
 ---
 {% endhighlight %}
-For your title, the quotation marks are required. For the time, use the actual datetime in `YYYY-MM-DD HH:MM:SS -TMZN` format... the `-TMZN` is your time zone relative to GMT. Jekyll's first post should have yours already listed, so you can just copy that. I'm sure there's a tool that does this header automatically, but I'm telling you how I did it as a complete newcomeer to Jekyll and GitHub.
+For your title, the quotation marks are required. For the time, use the actual datetime in `YYYY-MM-DD HH:MM:SS -TMZN` format... the `-TMZN` is your time zone relative to GMT. Jekyll's first post should have yours already listed, so you can just copy that. I'm sure there's a tool that does this header automatically, but I'm telling you how I did it as a complete newcomer to Jekyll and GitHub.
 
-You'll need to learn how to format in Markdown.  Here's the starter cheat sheet:
+You'll need to learn how to format in Markdown.  Here's a starter cheat sheet:
 
-{% highlight markdown %}
+`# big header`
 # big header
+`## medium header`
 ## medium header
+`### small header`
 ### small header
-
+`**bold text**`
 **bold text**
+`*italic text*`
 *italic text*
--bullet
--list
--items
-{% endhighlight %}
+`- bullet`
+`- list`
+`- items`
+- bullet
+- list
+- items
 
-Adding links and images is trickier, but there are plenty of Markdown guides out there when you want to extend yourself.
+
+Adding links and images is a bit trickier, but there are plenty of Markdown guides out there when you want to extend yourself.
 
 **Testing**
 
