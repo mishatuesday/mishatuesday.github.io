@@ -93,11 +93,11 @@ Adding links and images is a bit trickier, but there are plenty of Markdown guid
 It's a good idea to see how your posts will look (and whether you did anything wrong) before publishing to GitHub. Jekyll has a live server feature that you invoke by typing:
 `bundle exec jekyll serve` (make sure you are in the top-level site directory, not `_posts`)
 
-This assmbles your raw files into an actual web page (which you won't actually have to do in the future-- we're going to set up GitHub to do that automatically). By default, Jekyll serves on port 4000, so if you put `http://localhost:4000` into a web browser you should see your blog. You can change the theme template (there are hundreds if not thousands out there), but I haven't done that yet and we're just getting started here. You should be able to make changes to your post's Markdown file and see them by refreshing the page in the browser. When you're done looking, you can ctrl-c to stop the Jekyll server.
+This assmbles your raw files into an actual web page (which you won't actually have to do in the future-- we're going to set up GitHub to do that automatically). By default, Jekyll serves on port 4000, so if you put `http://localhost:4000` into a web browser you should see your blog. You can change the theme template (there are hundreds if not thousands out there), but I haven't done that yet and we're just getting started here. You should be able to make changes to your post's Markdown file and see them by refreshing the page in the browser. When you're done looking, you can `ctrl-c` to stop the Jekyll server.
 
 ### Getting it on GitHub Pages
 
-This was the trickiest part for me because I'm still learning git and GitHub. I had lots of problems that I didn't keep track of, and I'll tell you what I finally did that worked. There's certainly a better way to do this, but if you're as new to git as I was, this 'might' be a safe and easy way to do it. If you already have a GitHub Pages going, you may run into the troubles I did. If you don't already have a repo called `<your-username>.github.io` then this should work for you.
+This was the trickiest part for me because I'm still learning Git and GitHub. I had lots of problems that I didn't keep track of, and I'll tell you what I finally did that worked. There's certainly a better way to do this, but if you're as new to Git as I was, this is a simple and safe (if not straightforward) way to do it. If you already have a GitHub Pages going, you may run into the troubles I did. If you don't already have a repo called `<your-username>.github.io` then this should work fine for you.
 
 **Create a new repo on GitHub**
 
@@ -140,7 +140,9 @@ When I created this post (only my second post) and pushed to GitHub, the Jekyll 
 
 ### Adding new posts
 
-Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, and `git push`. Easy peasy tropical breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume.
+Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, `git push`, and wait for it to publish; GitHub says it can take up to 10 minutes, but I think they're hedging. It's usually less than 5. 
+
+That's it. Easy peasy tropical breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume.
 
 *Let me know f you find anything in this walkthrough that is wrong or doesn't work as it should. My email is at the bottom of the page.*
 
