@@ -4,7 +4,7 @@ title:  "Creating a Jekyll Blog for GitHub Pages"
 date:   2022-10-06 12:37:00 -0400
 categories: jekyll update
 ---
-## A very handholding walkthrough...
+## A very hand-holding walkthrough...
 
 I make no claims that this is the *only way* or even the *best way* to create a Jekyll blog and post it to GitHub pages. I'm just documenting the method I used as a complete newcomer to Jekyll, Git and GitHub.
 
