@@ -34,7 +34,7 @@ and
 
 `_config.yml`
 
-The folder `_posts` is where all your posts will go; the one that’s already in there is Jekyll’s default post. For ease of creating your first post, I recommend just going into the default post and replacing the content with your own. But do not remove the part that says: 
+The folder `_posts` is where all your posts will go; the one that’s already in there is Jekyll’s default post. For ease of creating your first post, I recommend just going into the default post and replacing the content with your own. You'll need a text editor or IDE to do that. I used VSCode, but you could use notepad or something. But whatever you do,  do not remove the part that says: 
 {% highlight markdown %}
 ---
 layout: post
