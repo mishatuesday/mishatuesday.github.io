@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Creating a Jekyll Blog for GitHub Pages"
-date: 2022-10-06 12:37:00 -0400
+title:  "Creating a Jekyll Blog for GitHub Pages"
+date:   2022-10-06 12:37:00 -0400
 categories: jekyll update
 ---
 ## A very handholding walkthrough...

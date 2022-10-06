@@ -7,19 +7,19 @@
 <meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="Creating a Jekyll Blog for GitHub Pages" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I make no claims that this is the only way or even the best way to create a Jekyll blog and post it to GitHub pages. I’m just documenting the method I, a newcomer to git and GitHub, used to create one." />
-<meta property="og:description" content="I make no claims that this is the only way or even the best way to create a Jekyll blog and post it to GitHub pages. I’m just documenting the method I, a newcomer to git and GitHub, used to create one." />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2022/10/06/creating-a-jekyll-blog.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2022/10/06/creating-a-jekyll-blog.html" />
+<meta name="description" content="A very handholding walkthrough…" />
+<meta property="og:description" content="A very handholding walkthrough…" />
+<link rel="canonical" href="/jekyll/update/2022/10/06/creating-a-jekyll-blog.html" />
+<meta property="og:url" content="/jekyll/update/2022/10/06/creating-a-jekyll-blog.html" />
 <meta property="og:site_name" content="I’d Rather Be Coding" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-10-06T12:37:00-04:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Creating a Jekyll Blog for GitHub Pages" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-06T12:37:00-04:00","datePublished":"2022-10-06T12:37:00-04:00","description":"I make no claims that this is the only way or even the best way to create a Jekyll blog and post it to GitHub pages. I’m just documenting the method I, a newcomer to git and GitHub, used to create one.","headline":"Creating a Jekyll Blog for GitHub Pages","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2022/10/06/creating-a-jekyll-blog.html"},"url":"http://localhost:4000/jekyll/update/2022/10/06/creating-a-jekyll-blog.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-06T12:37:00-04:00","datePublished":"2022-10-06T12:37:00-04:00","description":"A very handholding walkthrough…","headline":"Creating a Jekyll Blog for GitHub Pages","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/update/2022/10/06/creating-a-jekyll-blog.html"},"url":"/jekyll/update/2022/10/06/creating-a-jekyll-blog.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="I'd Rather Be Coding" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="I'd Rather Be Coding" /></head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">I&#39;d Rather Be Coding</a><nav class="site-nav">
@@ -47,7 +47,9 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>I make no claims that this is the <em>only way</em> or even the <em>best way</em> to create a Jekyll blog and post it to GitHub pages. I’m just documenting the method I, a newcomer to git and GitHub, used to create one.</p>
+    <h2 id="a-very-handholding-walkthrough">A very handholding walkthrough…</h2>
+
+<p>I make no claims that this is the <em>only way</em> or even the <em>best way</em> to create a Jekyll blog and post it to GitHub pages. I’m just documenting the method I used as a complete newcomer to Jekyll, Git and GitHub.</p>
 
 <h3 id="what-you-need">What you need:</h3>
 <ul>
@@ -58,15 +60,19 @@
 
 <h3 id="create-local-site">Create local site</h3>
 
-<p><strong>First, install Jekyll</strong>
-<code class="language-plaintext highlighter-rouge">gem install jekyll bundler</code>
+<p><strong>First, install Jekyll</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">gem install jekyll bundler</code>
 If your shell doesn’t recognize <code class="language-plaintext highlighter-rouge">gem</code> as a command, you need to install Ruby.</p>
 
-<p>**Then use Jekyll to create a site: jekyll new <sitename>**
-Jekyll will create a new directory that you can now `cd` into. When you `ls`, you will see a bunch of files. The parts that are immediately relevant to you are:
-`_posts/<date-of-creation>-welcome-to-jekyll.markdown`
+<p><strong>Then use Jekyll to create a site:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">jekyll new &lt;sitename&gt;</code></p>
+
+<p>Sitename can be anything; it’s just a filename, but it should not be <code class="language-plaintext highlighter-rouge">&lt;git-username&gt;.github.io</code> (you don’t want the headaches I had doing this). It also shouldn’t have spaces in it; use hyphens. Jekyll will create a new directory with that name that you can now <code class="language-plaintext highlighter-rouge">cd</code> into. <em>Note: in this method, the directory just created will not be your blog’s final local home. If you’re an expert on setting up remotes then my method is beneath you.</em> When you <code class="language-plaintext highlighter-rouge">ls</code>, you will see a bunch of files. The parts that are immediately relevant to you are:
+<code class="language-plaintext highlighter-rouge">_posts/&lt;date-of-creation&gt;-welcome-to-jekyll.markdown</code>
 and
-`_config.yml`</date-of-creation></sitename></p>
+<code class="language-plaintext highlighter-rouge">_config.yml</code></p>
 
 <p>The folder <code class="language-plaintext highlighter-rouge">_posts</code> is where all your posts will go; the one that’s in there is Jekyll’s default post. For ease of creating your first post, I recommend just going into the default post and replacing the content with your own. But do not remove the part that says:</p>
 
@@ -79,8 +85,9 @@ and
 
 <p>That must be at the top of every post file. Of course you can change the title (and the date if you need to), but don’t change the structure.</p>
 
-<p><strong>Creating new posts</strong>
-When you want to create a new post, create a new file in the _posts/ folder using the filename scheme
+<p><strong>Creating new posts</strong></p>
+
+<p>When you want to create a new post, create a new file in the _posts/ folder using the filename scheme
 <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-&lt;title&gt;.md</code> where YYYY is the year, MM the month, and DD the day. Title can be anything; it’s just a filename; the actual post title is defined inside the Markdown file. Remember to put your header at the top:</p>
 
 <figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="nn">---</span>
@@ -90,15 +97,55 @@ When you want to create a new post, create a new file in the _posts/ folder usin
 <span class="na">categories</span><span class="pi">:</span> <span class="s">jekyll update</span>
 <span class="nn">---</span></code></pre></figure>
 
-<p>For your title, the quotation marks are required. For the time, use the actual date in <code class="language-plaintext highlighter-rouge">YYYY-MM-DD HH:MM:SS -TMZN</code> format… the <code class="language-plaintext highlighter-rouge">-TMZN</code> is your time zone relative to GMT. Jekyll’s first post should have yours already listed, so you can just copy that. I’m sure there’s a tool that does this header automatically, but I’m telling you how I did it as a complete newcomeer to Jekyll and GitHub.</p>
+<p>For your title, the quotation marks are required. For the time, use the actual datetime in <code class="language-plaintext highlighter-rouge">YYYY-MM-DD HH:MM:SS -TMZN</code> format… the <code class="language-plaintext highlighter-rouge">-TMZN</code> is your time zone relative to GMT. Jekyll’s first post should have yours already listed, so you can just copy that. I’m sure there’s a tool that does this header automatically, but I’m telling you how I did it as a complete newcomeer to Jekyll and GitHub.</p>
 
-<p><strong>Testing</strong>*
-It’s a good idea to see how your posts will look (and whether you did anything wrong) before publishing to GitHub. Jekyll has a live server feature that you invoke by typing:
-<code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code></p>
+<p><strong>Testing</strong></p>
 
-<p>This assmbles your raw files into an actual web page. By default, Jekyll uses http://</p>
+<p>It’s a good idea to see how your posts will look (and whether you did anything wrong) before publishing to GitHub. Jekyll has a live server feature that you invoke by typing:
+<code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> (make sure you are in the top-level site directory, not <code class="language-plaintext highlighter-rouge">_posts</code>)</p>
 
-<p><strong>Getting it on GitHub Pages</strong></p>
+<p>This assmbles your raw files into an actual web page. By default, Jekyll serves on port 4000, so if you put <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> into a web browser you should see your blog. You can change the theme template (there are hundreds if not thousands out there), but I haven’t done that yet and we’re just getting started here. You should be able to make changes to your post’s Markdown file and see them by refreshing the page in the browser. When you’re done looking, you can ctrl-c to stop the Jekyll server.</p>
+
+<h3 id="getting-it-on-github-pages">Getting it on GitHub Pages</h3>
+
+<p>This was the trickiest part for me because I’m still learning git and GitHub. I had lots of problems that I didn’t keep track of, and I’ll tell you what I finally did that worked. There’s certainly a better way to do this, but if you’re as new to git as I was, this ‘might’ be a safe and easy way to do it. If you already have a GitHub Pages going, you may run into the troubles I did. If you don’t already have a repo called <code class="language-plaintext highlighter-rouge">&lt;your-username&gt;.github.io</code> then this should work for you.</p>
+
+<p><strong>Create a new repo on GitHub</strong></p>
+
+<p>Go to GitHub and click on the down arrow by the plus sign at the top right of the page (just to the left of your account avatar) and select ‘new repository.’</p>
+
+<p>Give the new repository a name of ‘your-username.github.io’. Obviously substitute your username. For example, mine is mishatuesday.github.io</p>
+
+<p>Click on the blue ‘Create repository’ button at the bottom of the page.</p>
+
+<p>You will see a blue-highlighted section at the top of the page that says ‘Quick setup — if you’ve done this kind of thing before’. You want to create a README file by clicking on ‘README’ below the repo address. You don’t have to type anything in, but you need to commit with the blue button at the bottom. You want a placeholder file to be in this repo so you can clone it to your machine.</p>
+
+<p>Once you’ve done that, you can click on the blue ‘Code’ button near the top. You want to copy the address in there. If you’ve never cloned a repo before, you’ll probably have to use the HTTPS tab above the address; SSH is better for security, but if you haven’t set that up ahead of time it won’t work. Use HTTPS or take a moment to learn <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">how to set up SSH on GitHub</a>.</p>
+
+<p>Go to your terminal with your GitHub repo address in your clipboard, make sure you’re in a directory where your site can live, and type <code class="language-plaintext highlighter-rouge">git clone &lt;paste address&gt;</code>. Git will create a directory called <code class="language-plaintext highlighter-rouge">&lt;your-username&gt;.github.io</code> which will be your blog’s final local home.</p>
+
+<p><code class="language-plaintext highlighter-rouge">cp</code> (or <code class="language-plaintext highlighter-rouge">mv</code>) all the files (including the directories <code class="language-plaintext highlighter-rouge">_posts</code> and <code class="language-plaintext highlighter-rouge">_site</code>) from the directory Jekyll created to the directory git just created. Then do a commit:</p>
+
+<p><code class="language-plaintext highlighter-rouge">git commit -am "initial commit of Jekyll blog"</code></p>
+
+<p>And you should now be able to <code class="language-plaintext highlighter-rouge">git push</code> and now all your Jekyll files are in your repo. One more step and it will be published for anyone in the world to see!</p>
+
+<p><strong>Publish in GitHub pages</strong></p>
+
+<p>Go back to your GitHub repo, and click on the ‘settings’ button, in the row of buttons just under the repo name at the top of the page.</p>
+
+<p>On the left-hand navigation menu, click ‘Pages.’</p>
+
+<p>Under ‘Build and deployment’ use the ‘Deploy from a branch’ dropdown to select ‘GitHub Actions.’ I know it says Beta, but don’t be scared. It’s just because Jekyll isn’t part of GitHub, so it’s considered a third-party item.</p>
+
+<p>Click ‘Configure’ under ‘GitHub Pages Jekyll.’ Do not change anything in the file you see. Just click the blue ‘Start commit’ button, then press the ‘Commit new file’ button.</p>
+
+<p>You’ve just created a workflow that will build a static site from the files in your repo every time you push to it.  So the final step is to do another <code class="language-plaintext highlighter-rouge">git push</code> from your terminal, while in your site/repo directory. Then type your repo name (your-username.github.io) into a browser.</p>
+
+<p>You’ll panic when you see a 404 not found page, but stop panicking.  It takes a few minutes for the build to happen and for the page(s) to get published. Obsessively refresh for up to 10 minutes until you see your blog.</p>
+
+<p><em>Let me know f you find anything in this walkthrough that is wrong or doesn’t work as it should. My email is at the bottom of the page</em></p>
+
 
   </div><a class="u-url" href="/jekyll/update/2022/10/06/creating-a-jekyll-blog.html" hidden></a>
 </article>
