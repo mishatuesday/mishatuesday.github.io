@@ -97,8 +97,13 @@ Click 'Configure' under 'GitHub Pages Jekyll.' Do not change anything in the fil
 
 You've just created a workflow that will build a static site from the files in your repo every time you push to it.  So the final step is to do another `git push` from your terminal, while in your site/repo directory. Then type your repo name (your-username.github.io) into a browser.
 
-You'll panic when you see a 404 not found page, but stop panicking.  It takes a few minutes for the build to happen and for the page(s) to get published. Obsessively refresh for up to 10 minutes until you see your blog.
+Don't panic if you see a 404 not found page.  It takes a few minutes for the build to happen and for the page(s) to get published. Obsessively refresh for up to 10 minutes until you see your blog.
+### Except:
+
+When I created this post (only my second post) and pushed to GitHub, the Jekyll workflow to build and deploy my site failed. I got an error message to the effect that the Ruby bundle failed with exit code 16. Long story short, it seems like a cross-OS issue; typing `bundle lock --add-platform x86_64-linux` in my terminal fixed the problem--thank you Gerard Morera for your answer on [Stackoverflow][stackoverflow]. On a subsequent push, the build worked, and my second post was gloriously visible (or you wouldn't be reading it now!). But I still can't tell you why the build worked the first time and broke when I added a new post. But Gerard's solution worked for me. YMMV.
+
 
 *Let me know f you find anything in this walkthrough that is wrong or doesn't work as it should. My email is at the bottom of the page*
 
 [ssh-setup]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+[stackoverflow]: https://stackoverflow.com/
