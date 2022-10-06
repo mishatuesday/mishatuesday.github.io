@@ -26,6 +26,8 @@ One of the requirements of the Flatiron course is to do a tech blog, so here's e
 
 I've chosen to use Jekyll for my blog, mostly because it was listed as "if you want a challenge" in Flatiron's course (which choice I seriously questioned for hours while having issues from my novice misuse of Git and GitHub). I'm writing this post in VSCode, and when I'm done I will figure out how to post it on [GitHub Pages][github-pages]. *(of course if you're seeing this I learned what I needed to learn about Git)*
 
+If you want to see how I installed Jekyll and deployed it to GitHub Pages, <a href="https://mishatuesday.github.io/jekyll/update/2022/10/06/creating-a-jekyll-blog.html">here's my walkthrough.</a>
+
 The below paragraph is from Jekyll's default first post, and I'm leaving it here so I have an easy reference of how to do links in [Markdown][markdown-guide].  Unlike HTML or wiki, the URLs are not inline. They're defined elsewhere in the document and included by reference. I'll `codify` it afterwards so you can see the raw version...
 
 
