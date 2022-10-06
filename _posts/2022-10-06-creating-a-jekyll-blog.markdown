@@ -141,7 +141,7 @@ When I created this post (only my second post) and pushed to GitHub, the Jekyll 
 
 ### Adding new posts
 
-Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, and `git push`. Easy peasy tropical breezy.
+Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, and `git push`. Easy peasy tropical breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume.
 
 *Let me know f you find anything in this walkthrough that is wrong or doesn't work as it should. My email is at the bottom of the page.*
 
