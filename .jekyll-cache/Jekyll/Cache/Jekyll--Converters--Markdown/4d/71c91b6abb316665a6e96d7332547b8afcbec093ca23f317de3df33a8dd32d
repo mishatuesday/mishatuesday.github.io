@@ -1,0 +1,53 @@
+I"�<p>I make no claims that this is the <em>only way</em> or even the <em>best way</em> to create a Jekyll blog and post it to GitHub pages. I’m just documenting the method I, a newcomer to git and GitHub, used to create one.</p>
+
+<h3 id="what-you-need">What you need:</h3>
+<ul>
+  <li>A local shell terminal (classically bash; I use Zsh) with Ruby and Git installed. Don’t try to do this on your phone.</li>
+  <li>A free GitHub account</li>
+  <li>Something to say</li>
+</ul>
+
+<h3 id="create-local-site">Create local site</h3>
+
+<p><strong>First, install Jekyll</strong>
+<code class="language-plaintext highlighter-rouge">gem install jekyll bundler</code>
+If your shell doesn’t recognize <code class="language-plaintext highlighter-rouge">gem</code> as a command, you need to install Ruby.</p>
+
+<p>**Then use Jekyll to create a site: jekyll new <sitename>**
+Jekyll will create a new directory that you can now `cd` into. When you `ls`, you will see a bunch of files. The parts that are immediately relevant to you are:
+`_posts/<date-of-creation>-welcome-to-jekyll.markdown`
+and
+`_config.yml`</date-of-creation></sitename></p>
+
+<p>The folder <code class="language-plaintext highlighter-rouge">_posts</code> is where all your posts will go; the one that’s in there is Jekyll’s default post. For ease of creating your first post, I recommend just going into the default post and replacing the content with your own. But do not remove the part that says:</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">Welcome</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Jekyll!"</span>
+<span class="na">date</span><span class="pi">:</span>   <span class="s">2022-10-05 11:38:45 -0400</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="s">jekyll update</span>
+<span class="nn">---</span></code></pre></figure>
+
+<p>That must be at the top of every post file. Of course you can change the title (and the date if you need to), but don’t change the structure.</p>
+
+<p><strong>Creating new posts</strong>
+When you want to create a new post, create a new file in the _posts/ folder using the filename scheme
+<code class="language-plaintext highlighter-rouge">YYYY-MM-DD-&lt;title&gt;.md</code> where YYYY is the year, MM the month, and DD the day. Title can be anything; it’s just a filename; the actual post title is defined inside the Markdown file. Remember to put your header at the top:</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">Whatever</span><span class="nv"> </span><span class="s">you</span><span class="nv"> </span><span class="s">want</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">title</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">be"</span> 
+<span class="na">date</span><span class="pi">:</span>   <span class="s">2022-10-05 11:38:45 -0400</span> 
+<span class="na">categories</span><span class="pi">:</span> <span class="s">jekyll update</span>
+<span class="nn">---</span></code></pre></figure>
+
+<p>For your title, the quotation marks are required. For the time, use the actual date in <code class="language-plaintext highlighter-rouge">YYYY-MM-DD HH:MM:SS -TMZN</code> format… the <code class="language-plaintext highlighter-rouge">-TMZN</code> is your time zone relative to GMT. Jekyll’s first post should have yours already listed, so you can just copy that. I’m sure there’s a tool that does this header automatically, but I’m telling you how I did it as a complete newcomeer to Jekyll and GitHub.</p>
+
+<p><strong>Testing</strong>*
+It’s a good idea to see how your posts will look (and whether you did anything wrong) before publishing to GitHub. Jekyll has a live server feature that you invoke by typing:
+<code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code></p>
+
+<p>This assmbles your raw files into an actual web page. By default, Jekyll uses http://</p>
+
+<p><strong>Getting it on GitHub Pages</strong></p>
+:ET
