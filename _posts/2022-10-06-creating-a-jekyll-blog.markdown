@@ -26,7 +26,7 @@ If your shell doesn't recognize `gem` as a command, you need to install [Ruby][r
 
 `jekyll new <sitename>`
 
-`<Sitename>` can be anything; it's just a filename, but it should **NOT** be `<your-git-username>.github.io` (you don't want the headaches I had doing this). It also shouldn't have spaces in it; use hyphens. Jekyll will create a new directory with that name that you can now `cd` into. *Note: in this method, the directory just created will not be your blog's final local home. If you're an expert on setting up remotes then my method is beneath you.* When you `ls`, you will see a bunch of files. The files that you need to know are:
+`<Sitename>` can be anything; it's just a filename, but it should **NOT** be `<your-git-username>.github.io` (you don't want the headaches I had doing this). It also shouldn't have spaces in it; use hyphens. Jekyll will create a new directory with that name that you can now `cd` into. *Note: in this method, the directory just created will not be your blog's final local home. If you're an expert on setting up remotes then my method is beneath you.* When you `ls` from inside your newly created directory, you will see a bunch of files. The files that you need to know are:
 
 `_posts/<date-of-creation>-welcome-to-jekyll.markdown`
 
