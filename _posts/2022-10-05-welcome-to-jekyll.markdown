@@ -12,14 +12,15 @@ Hi, I'm Misha Tuesday, and my eclectic career cluster has professionally include
 
 *Surprisingly, I have never had a diagnosis of ADD.*
 
-<center><p class='image-right'><img src="https://media-exp1.licdn.com/dms/image/C5616AQHaMBmEoqylhg/profile-displaybackgroundimage-shrink_350_1400/0/1663003871455?e=1670457600&v=beta&t=ZtufIwzlbF_dU4MSwKpIBAbVwoa_0WglUZU4Xow6oUw" alt="DALL-E renders of 'a hypnotist programming a computer in 80s clip art style'" /><i><a href="https://openai.com/dall-e-2/">DALL-E 2</a> renders of 'a hypnotist programming a computer in 80s clip art style'</i></p></center>
 
 
 For the last several years, I've been a self-employed solopreneur (mostly doing magic and hypnosis shows), but since performing and hypnotizing people mostly happens in-person\*, the COVID-19 pandemic destroyed my business.  Yes, things are coming back, but while in career freefall I decided to get back to something I love: *coding*.  It can be done remotely, it usually pays very well, and I find it very satisfying.
 
+<center><p class='image-right'><img src="https://media-exp1.licdn.com/dms/image/C5616AQHaMBmEoqylhg/profile-displaybackgroundimage-shrink_350_1400/0/1663003871455?e=1670457600&v=beta&t=ZtufIwzlbF_dU4MSwKpIBAbVwoa_0WglUZU4Xow6oUw" alt="DALL-E renders of 'a hypnotist programming a computer in 80s clip art style'" /><i><a href="https://openai.com/dall-e-2/">DALL-E 2</a> renders of 'a hypnotist programming a computer in 80s clip art style'</i></p></center>
+
 I also find that as I get older, I get more... well, not introverted exactly, but less extremely extroverted, perhaps? Anyway the idea of working from home instead of going out and being on stage has increasing appeal for me for many reasons.
 
-I am attending an intensive 15-week **coding bootcamp** which I started on September 19, 2022.  The program I chose was [Flatiron School][flatiron-school]'s Software Engineering program.  They teach JavaScript, React, Ruby, and Rails. *Side note: I previously used pre-ES6 JavaScript, CSS, HTML, PHP, several flavors of SQL, and the now-defunct Munch and Lunch (from back in my Borders.com days)*
+I am attending an intensive 15-week **coding bootcamp** which I started on September 19, 2022.  The program I chose was [Flatiron School][flatiron-school]'s Software Engineering program.  They teach JavaScript, React, Ruby, and Rails. *Side note: I previously used pre-ES6 JavaScript, CSS, HTML, PHP, several flavors of SQL, and the now-defunct Munch and Lunch (from back in my Borders.com days).*
 
 One of the requirements of the Flatiron course is to do a tech blog, so here's episode one.
 
