@@ -70,18 +70,24 @@ You'll need to learn how to format in Markdown.  Here's a starter cheat sheet:
 `### small header`
 ### small header
 `**bold text**`
+
 **bold text**
+
 `*italic text*`
+
 *italic text*
-`- bullet`
-`- list`
-`- items`
+
+{% highlight markdown %}
+- bullet
+- list
+- items
+{% endhighlight %}
 - bullet
 - list
 - items
 
 
-Adding links and images is a bit trickier, but there are plenty of Markdown guides out there when you want to extend yourself.
+Adding links and images is a bit trickier, but there are plenty of Markdown guides out there when you want to extend yourself. When in doubt, Markdown can also take regular HTML.
 
 **Testing**
 
