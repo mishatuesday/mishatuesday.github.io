@@ -49,8 +49,8 @@ The `_config.yml` file is where you set things like your blog's title, your name
 
 **Creating new posts**
 
-When you want to create a new post (which I would save until after you successfully deploy the site on GitHub pages), all you have to do is create a new file in the _posts/ folder using the filename scheme
-`YYYY-MM-DD-<title>.markdown` where YYYY is the year, MM the month, and DD the day. Title can be anything; it's just a filename; the actual post title is defined inside the Markdown file. Remember to put your header at the top:
+When you want to create a new post (which I would save until after you successfully deploy the site on GitHub pages), all you have to do is create a new file in the `_posts` folder using the filename scheme
+`YYYY-MM-DD-<title>.markdown` where YYYY is the year, MM the month, and DD the day. Look at the default post that's already in there if you're unsure. Title can be anything; it's just a filename; the actual post title is defined inside the Markdown file. Remember to put your header at the top:
 {% highlight markdown %}
 ---
 layout: post
@@ -61,14 +61,13 @@ categories: jekyll update
 {% endhighlight %}
 For your title, the quotation marks are required. For the time, use the actual datetime in `YYYY-MM-DD HH:MM:SS -TMZN` format... the `-TMZN` is your time zone relative to GMT. Jekyll's first post should have yours already listed, so you can just copy that. I'm sure there's a tool that does this header automatically, but I'm telling you how I did it as a complete newcomer to Jekyll and GitHub.
 
-You'll need to learn how to format in Markdown.  Here's a starter cheat sheet:
+You'll want to learn how to format text in Markdown.  Here's a starter cheat sheet:
 
-`# big header`
-# big header
-`## medium header`
-## medium header
-`### small header`
-### small header
+
+`## big heading`
+## big heading
+`### small heading`
+### small heading
 `**bold text**`
 
 **bold text**
