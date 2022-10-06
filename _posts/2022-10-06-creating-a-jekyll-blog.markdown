@@ -101,9 +101,9 @@ This was the trickiest part for me because I'm still learning Git and GitHub. I 
 
 **Create a new repo on GitHub**
 
-Go to GitHub and click on the down arrow by the plus sign at the top right of the page (just to the left of your account avatar) and select 'new repository.'
+Go to GitHub and click on the down arrow by the plus sign at the top right of the page (just to the left of your account avatar) and select 'new repository.' *If you don't have a GitHub account, make one now. It's free.*
 
-Give the new repository a name of 'your-username.github.io'. Obviously substitute your username. For example, mine is mishatuesday.github.io
+Give the new repository a name of `your-username.github.io`. Obviously substitute your username. For example, mine is `mishatuesday.github.io`
 
 Click on the blue 'Create repository' button at the bottom of the page.
 
@@ -142,7 +142,7 @@ When I created this post (only my second post) and pushed to GitHub, the Jekyll 
 
 Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, `git push`, and wait for it to publish; GitHub says it can take up to 10 minutes, but I think they're hedging. It's usually less than 5. 
 
-That's it. Easy peasy tropical breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume.
+That's it. Easy peasy tropical ~~storm~~ breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume. And you can be proud that you used the "if you want a challenge" solution.
 
 *Let me know f you find anything in this walkthrough that is wrong or doesn't work as it should. My email is at the bottom of the page.*
 
