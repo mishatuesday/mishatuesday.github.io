@@ -111,7 +111,7 @@ You will see a blue-highlighted section at the top of the page that says 'Quick 
 
 Once you've done that, you can click on the blue 'Code' button near the top. You want to copy the address in there. If you've never cloned a repo before, you'll probably have to use the HTTPS tab above the address; SSH is better for security, but if you haven't set that up ahead of time it won't work. Use HTTPS or take a moment to learn [how to set up SSH on GitHub][ssh-setup].
 
-Go to your terminal with your GitHub repo address in your clipboard, make sure you're in a directory where your site can live, and type `git clone <paste address>`. Since this is the super hand-holding walkthrough, I'll point out that you don't actually type '<paste address>'. You paste the repo address that you copied from GitHub. When you enter this, Git will create a directory called `<your-username>.github.io` which will be your blog's final local home.
+Go to your terminal with your GitHub repo address in your clipboard, make sure you're in a directory where your site can live, and type `git clone <paste address>`. Since this is the super hand-holding walkthrough, I'll point out that you don't actually type `<paste address>`. You paste the repo address that you copied from GitHub. When you enter this, Git will create a directory called `<your-username>.github.io` which will be your blog's final local home.
 
 `cp` (or `mv`) all the files (including the directories `_posts` and `_site`) from the directory Jekyll created to the directory git just created. You can do this in Mac Finder or Windows File Explorer if you prefer. Then do a commit in your terminal:
 
@@ -142,7 +142,7 @@ When I created this post (only my second post) and pushed to GitHub, the Jekyll 
 
 Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, `git push`, and wait for it to publish; GitHub says it can take up to 10 minutes, but I think they're hedging. It's usually less than 5. 
 
-That's it. Easy peasy tropical ~~storm~~ breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume. And you can be proud that you used the "if you want a challenge" solution.
+That's it. Easy peasy tropical ~~storm~~ breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume. And you can be proud that you used the "if you want a challenge" solution. For me, despite the multitude of type-and-click blog platforms, **I'd rather be coding.**
 
 *Let me know f you find anything in this walkthrough that is wrong or doesn't work as it should. My email is at the bottom of the page.*
 
