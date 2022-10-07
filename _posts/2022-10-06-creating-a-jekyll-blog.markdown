@@ -140,7 +140,7 @@ When I created this post (only my second post) and pushed to GitHub, the Jekyll 
 
 ### Adding new posts
 
-Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, `git push`, and wait for it to publish; GitHub says it can take up to 10 minutes, but I think they're hedging. It's usually less than 5. 
+Once this is all set up, all you have to do to add new posts is create a new `.markdown` file in your local `_posts` directory, add the header with the title and date, and then type away about whatever you want to write about, using Markdown formatting.  When you're done, do `git add .`, `git commit -m "add blog post"`, `git push`, and wait for it to publish; GitHub says it can take up to 10 minutes, but I think they're hedging. It's usually 2-3 minutes. 
 
 That's it. Easy peasy tropical ~~storm~~ breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume. And you can be proud that you used the "if you want a challenge" solution. For me, despite the multitude of type-and-click blog platforms, **I'd rather be coding.**
 
