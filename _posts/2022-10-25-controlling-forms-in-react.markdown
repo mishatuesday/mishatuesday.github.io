@@ -31,4 +31,22 @@ Checkboxes are easy. They're boolean and you just add the word "checked" if true
 
 `<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}}>`
 
-Selects are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag.
+Selects are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag:
+
+{% highlight javascript %}
+          <select 
+            className="form-control" 
+            name="size" 
+            value={size} 
+            onChange={e => setSize(e.target.value)}>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+{% endhighlight %}
+
+I had fun figuring out radio buttons. Try it. Open your console right now.
+
+<form>
+<input type="text"></input>
+</form>

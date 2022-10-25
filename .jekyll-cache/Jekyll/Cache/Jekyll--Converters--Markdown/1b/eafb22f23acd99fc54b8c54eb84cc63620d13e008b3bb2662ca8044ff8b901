@@ -1,4 +1,4 @@
-I"<h1 id="controlling-text-is-easy-but-radio-buttons-are-weird">Controlling text is easy, but radio buttons are weird…</h1>
+I"�<h1 id="controlling-text-is-easy-but-radio-buttons-are-weird">Controlling text is easy, but radio buttons are weird…</h1>
 
 <p>OK, you already learned how to control a text field… wait, maybe you don’t. Maybe you came here because you were searching for that and I came up because I mentioned it.</p>
 
@@ -23,5 +23,15 @@
 
 <p><code class="language-plaintext highlighter-rouge">&lt;input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e =&gt; setIsRed{!isRed}}&gt;</code></p>
 
-<p>Selects are different in React than in HTML. In HTML you put the default selection in the <code class="language-plaintext highlighter-rouge">&lt;option&gt;</code> tag, but in React it has to go in the <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> tag.</p>
+<p>Selects are different in React than in HTML. In HTML you put the default selection in the <code class="language-plaintext highlighter-rouge">&lt;option&gt;</code> tag, but in React it has to go in the <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> tag:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">          <span class="o">&lt;</span><span class="nx">select</span> 
+            <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">form-control</span><span class="dl">"</span> 
+            <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">size</span><span class="dl">"</span> 
+            <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">size</span><span class="p">}</span> 
+            <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setSize</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Small</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Small</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Medium</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Medium</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Large</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Large</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/select&gt;</span></code></pre></figure>
 :ET
