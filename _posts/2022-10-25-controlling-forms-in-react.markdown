@@ -10,7 +10,7 @@ OK, you already learned how to control a text field... wait, maybe you don't. Ma
 
 OK, review of how to control a text field:
 
-{% highlight markdown %}
+
 // you'll need useState
 import React, {useState} from 'react'
 // set up a state variable to hold the value of the field, initialized to blank
@@ -19,4 +19,3 @@ const [formField, setFormField] = useState
 <form>
 <input type="text" value={formField} onChange={e => setFormField(e.target.value)}></input>
 </form>
-<% endhighlight %>
