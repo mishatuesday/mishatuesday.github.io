@@ -23,8 +23,8 @@ const [formField, setFormField] = useState("")
 
 Of course, if you need to use that field value in a different componenet, you'll have to pass down a function as props to get it there... but I digress.
 
-# The real topic I wanted to blog about:
+## The real topic I wanted to blog about:
 
-## Input types select (dropdown), radio buttons, and checkboxes.
+# Input types select (dropdown), radio buttons, and checkboxes.
 
 Checkboxes are easy. They're boolean and you just add the word "checked" if true:

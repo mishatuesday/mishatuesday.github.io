@@ -16,9 +16,9 @@
 
 <p>Of course, if you need to use that field value in a different componenet, you’ll have to pass down a function as props to get it there… but I digress.</p>
 
-<h1 id="the-real-topic-i-wanted-to-blog-about">The real topic I wanted to blog about:</h1>
+<h2 id="the-real-topic-i-wanted-to-blog-about">The real topic I wanted to blog about:</h2>
 
-<h2 id="input-types-select-dropdown-radio-buttons-and-checkboxes">Input types select (dropdown), radio buttons, and checkboxes.</h2>
+<h1 id="input-types-select-dropdown-radio-buttons-and-checkboxes">Input types select (dropdown), radio buttons, and checkboxes.</h1>
 
 <p>Checkboxes are easy. They’re boolean and you just add the word “checked” if true:</p>
 :ET
