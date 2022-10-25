@@ -64,11 +64,15 @@
 
 <p>Of course, if you need to use that field value in a different componenet, you’ll have to pass down a function as props to get it there… but I digress.</p>
 
-<h2 id="the-real-topic-i-wanted-to-blog-about">The real topic I wanted to blog about:</h2>
+<h2 id="the-real-input-types-i-wanted-to-blog-about">The real input types I wanted to blog about:</h2>
 
-<h1 id="input-types-select-dropdown-radio-buttons-and-checkboxes">Input types select (dropdown), radio buttons, and checkboxes.</h1>
+<h1 id="select-radio-and-checkbox">Select, radio, and checkbox</h1>
 
-<p>Checkboxes are easy. They’re boolean and you just add the word “checked” if true:</p>
+<p>Checkboxes are easy. They’re boolean and you just add the word “checked” if true (the boolean is a state variable of course):</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e =&gt; setIsRed{!isRed}}&gt;</code></p>
+
+<p>Selects are different in React than in HTML. In HTML you put the default selection in the <code class="language-plaintext highlighter-rouge">&lt;option&gt;</code> tag, but in React it has to go in the <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> tag.</p>
 
   </div><a class="u-url" href="/jekyll/update/2022/10/24/controlling-forms-in-react.html" hidden></a>
 </article>

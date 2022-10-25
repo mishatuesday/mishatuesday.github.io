@@ -23,8 +23,12 @@ const [formField, setFormField] = useState("")
 
 Of course, if you need to use that field value in a different componenet, you'll have to pass down a function as props to get it there... but I digress.
 
-## The real topic I wanted to blog about:
+## The real input types I wanted to blog about:
 
-# Input types select (dropdown), radio buttons, and checkboxes.
+# Select, radio, and checkbox
 
-Checkboxes are easy. They're boolean and you just add the word "checked" if true:
+Checkboxes are easy. They're boolean and you just add the word "checked" if true (the boolean is a state variable of course):
+
+`<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}}>`
+
+Selects are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag.
