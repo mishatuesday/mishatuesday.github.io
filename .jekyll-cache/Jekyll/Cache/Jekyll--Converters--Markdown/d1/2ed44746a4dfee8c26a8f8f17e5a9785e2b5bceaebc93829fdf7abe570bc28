@@ -1,4 +1,4 @@
-I"�<h1 id="controlling-text-is-easy-but-radio-buttons-are-weird">Controlling text is easy, but radio buttons are weird…</h1>
+I"�<h1 id="controlling-text-is-easy-but-radio-buttons-are-weird">Controlling text is easy, but radio buttons are weird…</h1>
 
 <p>OK, you already learned how to control a text field… wait, maybe you don’t. Maybe you came here because you were searching for that and I came up because I mentioned it.</p>
 
@@ -34,4 +34,12 @@
 </span>            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Medium</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Medium</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
 </span>            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Large</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Large</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
 </span>          <span class="o">&lt;</span><span class="sr">/select&gt;</span></code></pre></figure>
+
+<p>I had fun figuring out radio buttons. Try it. Open your console right now.</p>
+
+<form>
+<input type="radio" name="kingdom" id="Animal" value="Animal" />
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" />
+<input type="radio" name="kingdom" id="Mineral" value="Mineral" />
+</form>
 :ET

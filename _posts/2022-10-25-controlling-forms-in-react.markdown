@@ -48,5 +48,7 @@ Selects are different in React than in HTML. In HTML you put the default selecti
 I had fun figuring out radio buttons. Try it. Open your console right now.
 
 <form>
-<input type="text"></input>
+<input type="radio" name="kingdom" id="Animal" value="Animal">
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable">
+<input type="radio" name="kingdom" id="Mineral" value="Mineral">
 </form>
