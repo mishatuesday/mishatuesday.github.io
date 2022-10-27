@@ -1,4 +1,4 @@
-I"�<h1 id="controlling-text-is-easy-but-radio-buttons-are-weird">Controlling text is easy, but radio buttons are weird…</h1>
+I"f<h1 id="controlling-text-is-easy-but-radio-buttons-are-weird">Controlling text is easy, but radio buttons are weird…</h1>
 
 <p>OK, you already learned how to control a text field… wait, maybe you don’t. Maybe you came here because you were searching for that and I came up because I mentioned it.</p>
 
@@ -39,7 +39,10 @@
 
 <form>
 <input type="radio" name="kingdom" id="Animal" value="Animal" />
+<label for="Animal">Animal</label>
 <input type="radio" name="kingdom" id="Vegetable" value="Vegetable" />
+<label for="Animal">Vegetable</label>
 <input type="radio" name="kingdom" id="Mineral" value="Mineral" />
+<label for="Animal">Mineral</label>
 </form>
 :ET
