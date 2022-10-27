@@ -45,7 +45,7 @@ Selects are different in React than in HTML. In HTML you put the default selecti
           </select>
 {% endhighlight %}
 
-I had fun figuring out radio buttons. Try it. Open your console (command-option-j) and click on the buttons:
+I had fun figuring out radio buttons. Try it. Open your console (command-option-j). You should see console logs when you click these buttons:
 
 <form>
 <input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('Animal changed!')">
