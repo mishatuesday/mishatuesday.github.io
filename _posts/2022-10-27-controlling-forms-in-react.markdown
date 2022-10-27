@@ -56,7 +56,7 @@ I had fun figuring out radio buttons. Try it. Open your console (command-option-
 <label for="Animal">Mineral</label>
 </form>
 
-They are independent <input> tags, but they are interrelated, so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
+They are independent `<input>` tags, but they are interrelated, so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
 
 To control radio buttons in React, you set a boolean for the `checked` attribute, based on your state variable. In our example:
 
