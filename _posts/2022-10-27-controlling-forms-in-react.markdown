@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Controlling Forms in React: Dropdowns, Checkboxes, and Radio Buttons"
-date:   2022-10-24 11:26:00 -0400
+date:   2022-10-27 16:15:00 -0400
 categories: jekyll update
 ---
 # Controlling text is easy, but radio buttons are weird...
@@ -45,13 +45,32 @@ Selects are different in React than in HTML. In HTML you put the default selecti
           </select>
 {% endhighlight %}
 
-I had fun figuring out radio buttons. Try it. Open your console right now.
+I had fun figuring out radio buttons. Try it. Open your console (command-option-j) and click on the buttons:
 
 <form>
-<input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('it changed!')">
+<input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('Animal changed!')">
 <label for="Animal">Animal</label>
-<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" onChange="console.log('it changed!')">
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" onChange="console.log('Vegetable changed!')">
 <label for="Animal">Vegetable</label>
-<input type="radio" name="kingdom" id="Mineral" value="Mineral" onChange="console.log('it changed!')">
+<input type="radio" name="kingdom" id="Mineral" value="Mineral" onChange="console.log('Mineral changed!')">
 <label for="Animal">Mineral</label>
 </form>
+
+They are independent <input> tags, but they are interrelated, so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
+
+To control radio buttons in React, you set a boolean for the `checked` attribute, based on your state variable. In our example:
+
+{% highlight javascript %}
+<form>
+<input type="radio" name="kingdom" id="Animal" value="Animal" onChange={e => setKingdom("Animal")} checked={kingdom === "Animal" ? true : false}>
+<label for="Animal">Animal</label>
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" onChange={e => setKingdom("Vegetable")} checked={kingdom === "Vegetable" ? true : false}>
+<label for="Animal">Vegetable</label>
+<input type="radio" name="kingdom" id="Mineral" value="Mineral" onChange={e => setKingdom("Mineral")} checked={kingdom === "Mineral" ? true : false}>
+<label for="Animal">Mineral</label>
+</form>
+{% endhighlight %}
+
+The fact that every input type is handled differently in HTML and controlled differently in React can be a bit confusing, but if you play with them you
+will get the hang of it. And when you do, some other language will replace HTML and all the old websites will vanish in the night, like Adobe Flash or Swatch Time.
+We could complain about the inevitable obsolescence of any tech skill, but I'd rather not complain. **I'd rather be coding.**
