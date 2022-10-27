@@ -4,7 +4,7 @@ title:  "Controlling Forms in React: Dropdowns, Checkboxes, and Radio Buttons"
 date:   2022-10-27 16:15:00 -0400
 categories: jekyll update
 ---
-# Controlling text is easy, but radio buttons are weird...
+# Controlling text inputs is simple, but checkboxes and radion button are not alike...
 
 OK, you already learned how to control a text field... wait, maybe you don't. Maybe you came here because you were searching for that and I came up because I mentioned it.
 
