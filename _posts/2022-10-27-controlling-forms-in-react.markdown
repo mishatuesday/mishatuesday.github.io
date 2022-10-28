@@ -25,13 +25,21 @@ Of course, if you need to use that field value in a different component, you'll 
 
 ## The real input types I wanted to blog about:
 
-# Select, radio, and checkbox
+# Select (dropdown), radio, and checkbox
 
-Checkboxes are easy. They're boolean and you just add the word "checked" if true (the boolean is a state variable of course):
+**Checkboxes** are simple. They're boolean and you just add the word "checked" if true (the boolean is a state variable of course):
 
 `<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}}>`
 
-Selects are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag's value attribute:
+Go ahead and open your dev tools (command-option-j) and see what happens when you check and uncheck this box:
+
+<input type="checkbox" name="test-box" onChange="console.log('the checkbox changed')">
+<label for="test-box">Try it!</label>
+
+Notice how it changes when you click it AND when you unclick it... you'll notice a difference when we do radio buttons.
+<hr />
+
+**Selects** (which most people call dropdowns) are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag's value attribute (which, since you're setting it from a state variable, makes it a controlled input):
 
 {% highlight javascript %}
 import {useState} from 'react'
@@ -48,7 +56,9 @@ const [size, setSize] = useState("Small")
   </select>
 {% endhighlight %}
 
-I had fun figuring out radio buttons. Try it. Open your dev tools console right now (command-option-j) and click these radio buttons. I have console logs in the `onChange` attribute for each radio button:
+<hr />
+
+I had fun figuring out **radio buttons**. Try it. Open your dev tools console *right now* (command-option-j) and click these radio buttons. I have console logs in the `onChange` attribute for each radio button:
 
 <form>
 <input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('Animal changed!')">
@@ -74,6 +84,8 @@ To control radio buttons in React, you set a boolean for the `checked` attribute
 <label for="Animal">Mineral</label>
 </form>
 {% endhighlight %}
+
+<hr />
 
 The fact that every input type is handled differently in HTML and controlled differently in React can be a bit confusing, but if you play with them you
 will get the hang of it. And when you do, some other, more internally-consistent language will replace HTML and all the old websites will vanish in the night, like Adobe Flash or Swatch Time.
