@@ -31,14 +31,14 @@ Of course, if you need to use that field value in a different component, you'll 
 
 `<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}} />`
 
-Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck this box:
+I have a console log set up in the onChange attribute for each of these checkboxes. Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck them:
 
 <input type="checkbox" name="test-box" onChange="console.log('the Try it! checkbox changed')" />
 <label for="test-box">Try it!</label>
 <input type="checkbox" name="other-test-box" onChange="console.log('the Mix it up! checkbox changed')" />
 <label for="other-test-box">Mix it up!</label>
 
-Notice how it changes when you click it AND when you unclick it... you'll notice a difference when we do radio buttons.
+Notice how they change when you check them AND when you uncheck them... you'll notice a difference when we do radio buttons.
 <hr />
 
 **Selects** (which most people call dropdowns) are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag's value attribute (which, since you're setting it from a state variable, makes it a controlled input):
