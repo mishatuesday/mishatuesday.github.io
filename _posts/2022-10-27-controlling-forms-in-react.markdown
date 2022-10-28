@@ -17,7 +17,7 @@ import React, {useState} from 'react'
 const [formField, setFormField] = useState("")
 // in your JSX, you use the state variable and function to set and change the field's value as the user types
 <form>
-<input type="text" value={formField} onChange={e => setFormField(e.target.value)}></input>
+<input type="text" value={formField} onChange={e => setFormField(e.target.value)} />
 </form>
 {% endhighlight %}
 
@@ -33,7 +33,7 @@ Of course, if you need to use that field value in a different component, you'll 
 
 Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck this box:
 
-<input type="checkbox" name="test-box" onChange="console.log('the checkbox changed')">
+<input type="checkbox" name="test-box" onChange="console.log('the checkbox changed')" />
 <label for="test-box">Try it!</label>
 
 Notice how it changes when you click it AND when you unclick it... you'll notice a difference when we do radio buttons.
@@ -61,11 +61,11 @@ const [size, setSize] = useState("Small")
 I had fun figuring out **radio buttons**. Try it. Open your dev tools console (really! do it!) and click these radio buttons. I have console logs in the `onChange` attribute for each radio button:
 
 <form>
-<input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('Animal changed!')">
+<input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('Animal changed!')" />
 <label for="Animal">Animal</label>
-<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" onChange="console.log('Vegetable changed!')">
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" onChange="console.log('Vegetable changed!')" />
 <label for="Animal">Vegetable</label>
-<input type="radio" name="kingdom" id="Mineral" value="Mineral" onChange="console.log('Mineral changed!')">
+<input type="radio" name="kingdom" id="Mineral" value="Mineral" onChange="console.log('Mineral changed!')" />
 <label for="Animal">Mineral</label>
 </form>
 
@@ -76,11 +76,11 @@ To control radio buttons in React, you set a boolean for the `checked` attribute
 
 {% highlight javascript %}
 <form>
-<input type="radio" name="kingdom" id="Animal" value="Animal" checked={kingdom === "Animal" ? true : false} onChange={e => setKingdom("Animal")} >
+<input type="radio" name="kingdom" id="Animal" value="Animal" checked={kingdom === "Animal" ? true : false} onChange={e => setKingdom("Animal")} />
 <label for="Animal">Animal</label>
-<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" checked={kingdom === "Vegetable" ? true : false} onChange={e => setKingdom("Vegetable")}>
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" checked={kingdom === "Vegetable" ? true : false} onChange={e => setKingdom("Vegetable")} />
 <label for="Animal">Vegetable</label>
-<input type="radio" name="kingdom" id="Mineral" value="Mineral" checked={kingdom === "Mineral" ? true : false} onChange={e => setKingdom("Mineral")}>
+<input type="radio" name="kingdom" id="Mineral" value="Mineral" checked={kingdom === "Mineral" ? true : false} onChange={e => setKingdom("Mineral")} />
 <label for="Animal">Mineral</label>
 </form>
 {% endhighlight %}
