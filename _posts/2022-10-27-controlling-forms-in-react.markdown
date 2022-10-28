@@ -4,11 +4,11 @@ title:  "Controlling Forms in React: Dropdowns, Checkboxes, and Radio Buttons"
 date:   2022-10-27 16:15:00 -0400
 categories: jekyll update
 ---
-# Controlling text inputs is simple, but checkboxes and radion button are not alike...
+# Controlling text inputs is simple, but checkboxes and radio buttons are not alike...
 
-OK, you already learned how to control a text field... wait, maybe you don't. Maybe you came here because you were searching for that and I came up because I mentioned it.
+OK, you already know how to control a text field... wait, maybe you don't. Maybe you came here because you were searching for that and this blog came up because I mentioned it.
 
-OK, review of how to control a text field:
+OK, review of how to control a text field (scroll sideways to see all the code):
 
 {% highlight javascript %}
 // you'll need useState
@@ -21,7 +21,7 @@ const [formField, setFormField] = useState("")
 </form>
 {% endhighlight %}
 
-Of course, if you need to use that field value in a different componenet, you'll have to pass down a function as props to get it there... but I digress.
+Of course, if you need to use that field value in a different component, you'll have to pass down a function as props to get it there... but I digress.
 
 ## The real input types I wanted to blog about:
 
@@ -31,21 +31,24 @@ Checkboxes are easy. They're boolean and you just add the word "checked" if true
 
 `<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}}>`
 
-Selects are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag:
+Selects are different in React than in HTML. In HTML you put the default selection in the `<option>` tag, but in React it has to go in the `<select>` tag's value attribute:
 
 {% highlight javascript %}
-          <select 
-            className="form-control" 
-            name="size" 
-            value={size} 
-            onChange={e => setSize(e.target.value)}>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
-          </select>
+import {useState} from 'react'
+const [size, setSize] = useState("Small")
+...
+  <select 
+    className="form-control" 
+    name="size" 
+    value={size} 
+    onChange={e => setSize(e.target.value)}>
+    <option value="Small">Small</option>
+    <option value="Medium">Medium</option>
+    <option value="Large">Large</option>
+  </select>
 {% endhighlight %}
 
-I had fun figuring out radio buttons. Try it. Open your console (command-option-j). You should see console logs when you click these buttons:
+I had fun figuring out radio buttons. Try it. Open your dev tools console right now (command-option-j) and click these radio buttons. I have console logs in the `onChange` attribute for each radio button:
 
 <form>
 <input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('Animal changed!')">
@@ -56,17 +59,18 @@ I had fun figuring out radio buttons. Try it. Open your console (command-option-
 <label for="Animal">Mineral</label>
 </form>
 
+
 They are independent `<input>` tags, but they are interrelated, so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
 
 To control radio buttons in React, you set a boolean for the `checked` attribute, based on your state variable. In our example:
 
 {% highlight javascript %}
 <form>
-<input type="radio" name="kingdom" id="Animal" value="Animal" onChange={e => setKingdom("Animal")} checked={kingdom === "Animal" ? true : false}>
+<input type="radio" name="kingdom" id="Animal" value="Animal" checked={kingdom === "Animal" ? true : false} onChange={e => setKingdom("Animal")} >
 <label for="Animal">Animal</label>
-<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" onChange={e => setKingdom("Vegetable")} checked={kingdom === "Vegetable" ? true : false}>
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" checked={kingdom === "Vegetable" ? true : false} onChange={e => setKingdom("Vegetable")}>
 <label for="Animal">Vegetable</label>
-<input type="radio" name="kingdom" id="Mineral" value="Mineral" onChange={e => setKingdom("Mineral")} checked={kingdom === "Mineral" ? true : false}>
+<input type="radio" name="kingdom" id="Mineral" value="Mineral" checked={kingdom === "Mineral" ? true : false} onChange={e => setKingdom("Mineral")}>
 <label for="Animal">Mineral</label>
 </form>
 {% endhighlight %}
