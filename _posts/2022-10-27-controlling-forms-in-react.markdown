@@ -31,7 +31,7 @@ Of course, if you need to use that field value in a different component, you'll 
 
 `<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}} />`
 
-I have a console log set up in the onChange attribute for each of these checkboxes. Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck them:
+I have a console log set up in the onChange attribute for each of the following checkboxes. Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck them:
 
 <input type="checkbox" name="test-box" onChange="console.log('the Try it! checkbox changed')" />
 <label for="test-box">Try it!</label>
