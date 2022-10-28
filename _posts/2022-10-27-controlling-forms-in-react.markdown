@@ -70,7 +70,7 @@ I had fun figuring out **radio buttons**. Try it. Open your dev tools console (r
 </form>
 
 
-They are independent `<input>` tags, but they are interrelated (due to sharing the same 'name' attribute), so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
+Each radio button comes from a stand-alone `<input>` tags, and unlike select options they are not wrapped in any containing tag. But they *are* interrelated (due to sharing the same 'name' attribute), so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
 
 To control radio buttons in React, you set a boolean for the `checked` attribute, based on your state variable. In our example:
 
