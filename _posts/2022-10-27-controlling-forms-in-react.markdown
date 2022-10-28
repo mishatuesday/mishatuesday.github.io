@@ -88,6 +88,6 @@ To control radio buttons in React, you set a boolean for the `checked` attribute
 <hr />
 
 The fact that every input type is handled differently in HTML and controlled differently in React can be a bit confusing, but if you play with them you
-will get the hang of it. And when you do, some other, more internally-consistent language will replace HTML and all the old websites will vanish in the night, like Adobe Flash or Swatch Time.
+will get the hang of it. And when you do, some other, more internally-consistent language will replace HTML and all the old websites will vanish in the night, like Adobe Flash or Swatch Internet Time.
 
 We could complain about the inevitable obsolescence of any tech skill, but I'd rather not complain. **I'd rather be coding.**
