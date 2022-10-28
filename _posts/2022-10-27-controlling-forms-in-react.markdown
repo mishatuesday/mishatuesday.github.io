@@ -29,7 +29,7 @@ Of course, if you need to use that field value in a different component, you'll 
 
 **Checkboxes** are simple. They're boolean and you just add the word "checked" if true (the boolean is a state variable of course):
 
-`<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}}>`
+`<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}} />`
 
 Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck this box:
 
