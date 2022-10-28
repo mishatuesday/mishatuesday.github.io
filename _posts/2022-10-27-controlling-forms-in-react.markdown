@@ -31,7 +31,7 @@ Of course, if you need to use that field value in a different component, you'll 
 
 `<input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e => setIsRed{!isRed}}>`
 
-Go ahead and open your dev tools (command-option-j) and see what happens when you check and uncheck this box:
+Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck this box:
 
 <input type="checkbox" name="test-box" onChange="console.log('the checkbox changed')">
 <label for="test-box">Try it!</label>
@@ -58,7 +58,7 @@ const [size, setSize] = useState("Small")
 
 <hr />
 
-I had fun figuring out **radio buttons**. Try it. Open your dev tools console *right now* (command-option-j) and click these radio buttons. I have console logs in the `onChange` attribute for each radio button:
+I had fun figuring out **radio buttons**. Try it. Open your dev tools console (really! do it!) and click these radio buttons. I have console logs in the `onChange` attribute for each radio button:
 
 <form>
 <input type="radio" name="kingdom" id="Animal" value="Animal" onChange="console.log('Animal changed!')">
@@ -70,7 +70,7 @@ I had fun figuring out **radio buttons**. Try it. Open your dev tools console *r
 </form>
 
 
-They are independent `<input>` tags, but they are interrelated, so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
+They are independent `<input>` tags, but they are interrelated (due to sharing the same 'name' attribute), so unlike a checkbox, `onChange` only happens for each button when they are selected, not deselected.
 
 To control radio buttons in React, you set a boolean for the `checked` attribute, based on your state variable. In our example:
 
