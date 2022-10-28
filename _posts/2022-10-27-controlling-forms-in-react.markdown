@@ -33,8 +33,10 @@ Of course, if you need to use that field value in a different component, you'll 
 
 Go ahead and open your dev tools *right now* (command-option-j) and see what happens when you check and uncheck this box:
 
-<input type="checkbox" name="test-box" onChange="console.log('the checkbox changed')" />
+<input type="checkbox" name="test-box" onChange="console.log('the Try it! checkbox changed')" />
 <label for="test-box">Try it!</label>
+<input type="checkbox" name="other-test-box" onChange="console.log('the Mix it up! checkbox changed')" />
+<label for="other-test-box">Mix it up!</label>
 
 Notice how it changes when you click it AND when you unclick it... you'll notice a difference when we do radio buttons.
 <hr />
