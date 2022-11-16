@@ -9,12 +9,21 @@ categories: jekyll update
 
 ...is what my instructor said when I mentioned CORS during Stand Up. CORS stands for Cross-Origin Resource Sharing, and it's a security measure that can prevent unauthorized API access.
 
-*It can also prevent **authorized** API access.
+*It can also prevent **authorized** API access if you don't know about it.*
 
-TL;DR: If you have React and Ruby/Sinatra running on different ports and your data's not showing up, try putting
+**TL;DR:** If you have React and Ruby/Sinatra running on different ports and your data's not showing up, try putting
 `response['Access-Control-Allow-Origin'] = 'http://localhost:3000'`
 in your Sinatra `get` block (and not on the last line of the block). It's the least involved solution I found. *Of course if your React app is running on a port other than 3000, make it match.*
 
+Here's the code for one of my endpoints, with the solution in place:
+
+{% highlight ruby %}
+    get '/gigs/:id' do
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        user = User.find(params[:id])
+        user.gigs.order(date: :ASC).to_json
+    end
+{% endhighlight %}
 ### The Background
 
 I'm in Flatiron School's Software Engineering program. Phase 1 was all
@@ -31,6 +40,9 @@ So of course I searched for the error, and found lots of complicated code, mostl
 
 Luckily, I came across the idea that you can set the response authorization right in the Sinatra application controller, and it worked for me. Since it took me a while to find this solution, I decided to boost the signal with this blog post. Hopefully it helps the right person at the right time.
 
-Again, the thing I added was
+Again, the thing I added was:
+
 `response['Access-Control-Allow-Origin'] = 'http://localhost:3000'`
-and you have to put it in every endpoint you set up. I kind of didn't want to write this required blog post, because I have a project due and **I'd rather be coding**, but if this helps even one person get their first API up and running, it's worth it.
+
+and you have to put it in every endpoint you set up. I didn't say it was
+the global solution, I said it's the least complicated.  I kind of didn't want to write this required blog post, because I have a project due and **I'd rather be coding**, but if this helps even one person get their first API up and running, it's worth it.
