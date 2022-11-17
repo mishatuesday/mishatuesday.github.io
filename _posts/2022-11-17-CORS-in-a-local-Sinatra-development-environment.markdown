@@ -11,7 +11,9 @@ categories: jekyll update
 
 *It can also prevent **authorized** API access if you don't know about it.*
 
-**TLer; DRier:** My first solution worked for GET requests, but not for POST requests. I learned the real, global way to fix this (rarely encountered) issue.
+**The problem in a nutshell:** I had React running on port 3000 and Sinatra running on port 9292, and CORS was not set up to accept cross-origin requests. Where did I even get my `config.ru` file? I don't remember, but `Rack::Cors` was not in it. If you are running React and a Sinatra API locally, and your data won't show up in your React app, this may be why.
+
+**The TLer; DRier solution:** My first solution (below) worked for GET requests, but not for POST requests. I learned the real, global way to fix this (rarely encountered) issue.
 
 Put this in your `config.ru` file:
 {% highlight ruby %}
@@ -25,6 +27,8 @@ end
 
 and this in your `Gemfile`:
 `gem "rack-cors"`
+
+If it wasn't there before, you probably need to run `bundle install` again.
 
 You *could* read the rest of this post, but why bother? If given the choice, **I'd rather be coding**.
 
