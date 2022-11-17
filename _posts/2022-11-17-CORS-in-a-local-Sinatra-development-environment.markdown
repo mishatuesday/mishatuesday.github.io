@@ -11,6 +11,25 @@ categories: jekyll update
 
 *It can also prevent **authorized** API access if you don't know about it.*
 
+**TLer; DRier:** My first solution worked for GET requests, but not for POST requests. I learned the real, global way to fix this (rarely encountered) issue.
+
+Put this in your `config.ru` file:
+{% highlight ruby %}
+use Rack::Cors do
+    allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
+    end
+end
+{% endhighlight %}
+
+and this in your `Gemfile`:
+`gem "rack-cors"`
+
+You *could* read the rest of this post, but why bother? If given the choice, **I'd rather be coding**.
+
+
+
 **TL;DR:** If you have React and Ruby/Sinatra running on different ports and your data's not showing up, try putting
 `response['Access-Control-Allow-Origin'] = 'http://localhost:3000'`
 in your Sinatra `get` block (and not on the last line of the block). It's the least involved solution I found. *Of course if your React app is running on a port other than 3000, make it match.*
