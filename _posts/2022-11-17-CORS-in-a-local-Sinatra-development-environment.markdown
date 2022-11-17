@@ -32,7 +32,7 @@ vanilla JavaScript, which I had some experience with. Phase 2 was React, which w
 Now I'm in Phase 3, which is nominally the Ruby phase but it's primarily
 focused on ActiveRecord and Sinatra, so we can build our own API in anticipation of learning Rails, which will come in Phase 4.
 
-I knew how to write a React app and run it locally (I use `yarn start server` even though the program default is npm), and I had just learned how to write and run an ActiveRecord/Sinatra API using rake. So I thought, "ok I just run my React app on port 3000 and my API on 9292 and bingo!"  ...but it was **NOT BINGO**.
+I knew how to write a React app and run it locally, and I had just learned how to write and run an ActiveRecord/Sinatra API using rake. So I thought, "ok I just run my React app on port 3000 and my API on 9292 and bingo!"  ...but it was **NOT BINGO**.
 
 My data didn't show up in the browser, and I got a message that something called CORS had prevented my app from accessing my API endpoint.
 
