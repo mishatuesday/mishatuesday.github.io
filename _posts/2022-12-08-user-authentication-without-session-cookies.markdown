@@ -2,7 +2,7 @@
 layout: post
 title:  "User Authentication Without Session Cookies"
 date:   2022-12-08 13:15:00 -0400
-categories: authentication, localstorage, web_dev
+categories: jekyll update
 ---
 
 ## "Why won't this cookie persist?"
