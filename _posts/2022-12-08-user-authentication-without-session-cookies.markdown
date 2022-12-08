@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "User Authentication Without Session Cookies"
-date:   2022-12-08 13:15:00 -0400
+date:   2022-12-07 13:15:00 -0400
 categories: jekyll update
 ---
 
