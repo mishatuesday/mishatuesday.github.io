@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-09T10:39:10-05:00</updated><id>/feed.xml</id><title type="html">I’d Rather Be Coding</title><subtitle>A hypnotist returning to one of his former passions: coding. You could say I've gone from programming computers to programming people and back again.</subtitle><entry><title type="html">User Authentication Without Session Cookies</title><link href="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" rel="alternate" type="text/html" title="User Authentication Without Session Cookies" /><published>2022-12-07T12:15:00-05:00</published><updated>2022-12-07T12:15:00-05:00</updated><id>/jekyll/update/2022/12/07/user-authentication-without-session-cookies</id><content type="html" xml:base="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html"><![CDATA[<h2 id="why-wont-this-cookie-persist">“Why won’t this cookie persist?”</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-09T11:12:20-05:00</updated><id>/feed.xml</id><title type="html">I’d Rather Be Coding</title><subtitle>A hypnotist returning to one of his former passions: coding. You could say I've gone from programming computers to programming people and back again.</subtitle><entry><title type="html">User Authentication Without Session Cookies</title><link href="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" rel="alternate" type="text/html" title="User Authentication Without Session Cookies" /><published>2022-12-07T12:15:00-05:00</published><updated>2022-12-07T12:15:00-05:00</updated><id>/jekyll/update/2022/12/07/user-authentication-without-session-cookies</id><content type="html" xml:base="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html"><![CDATA[<h2 id="why-wont-this-cookie-persist">“Why won’t this cookie persist?”</h2>
 
 <p>I was having trouble getting session cookies to persist in Rails. Then I
-stumbled on to localStorage</p>
+stumbled on to localStorage.</p>
 
 <p><em>Some people will tell you that using localStorage circumvents cookie
 consent laws, but this is not the case. This is not legal advice, but
@@ -32,11 +32,12 @@ this:</p>
 <h2 id="easy">Easy</h2>
 <p>There are (at least) two ways to set a localStorage key/value pair.
 I use <code class="language-plaintext highlighter-rouge">localStorage.email = r.email</code>.
-You can also use brackete notation: <code class="language-plaintext highlighter-rouge">localStorage['email'] = r.email</code>
-When you want to get rid of it, it’s <code class="language-plaintext highlighter-rouge">localStorage.removeItem("name")</code>
+You can also use bracket notation: <code class="language-plaintext highlighter-rouge">localStorage['email'] = r.email</code>.</p>
+
+<p>When you want to get rid of it, it’s <code class="language-plaintext highlighter-rouge">localStorage.removeItem("name")</code>
 Or you can nuke everything in localStorage with <code class="language-plaintext highlighter-rouge">localStorage.clear</code>
-In my opinion, easier than dealing with session cookies. There’s no
-configuration to worry about, it just works.</p>
+In my opinion, this method is easier than dealing with session cookies. 
+There’s no configuration to worry about, it just works.</p>
 
 <p>So here’s my login function in React:</p>
 
@@ -66,7 +67,9 @@ configuration to worry about, it just works.</p>
 needed some components to re-render upon login. <code class="language-plaintext highlighter-rouge">localStorage.error</code> is so my login form can conditionally render the error message if present.</p>
 
 <p>Finally, my components can conditionally render elements based on whether
-or not you are logged in, for instance:</p>
+or not you are logged in. There’s a concessions page where you can see
+all the concessions available if you’re not logged in, but you can only
+add or edit concessions if you’re logged in:</p>
 
 <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    <span class="k">return</span> <span class="p">(</span>
     <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
@@ -82,6 +85,8 @@ or not you are logged in, for instance:</p>
 </span>    <span class="p">)</span></code></pre></figure>
 
 <p>As my favorite fake user data account, David Pumpkins, would say: “Any questions?”</p>
+
+<p><img src="/_site/assets/rosebud-amphitheater.png" alt=" concert stage with lighting and a crowd of people in the audience" title="Don't judge, it's a work in progress. I'm still in bootcamp!" /></p>
 
 <p>Actually, never mind. I probably won’t answer any questions, because <strong>I’d rather be coding.</strong></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[“Why won’t this cookie persist?”]]></summary></entry><entry><title type="html">CORS in a Local Sinatra Development Environment</title><link href="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html" rel="alternate" type="text/html" title="CORS in a Local Sinatra Development Environment" /><published>2022-11-16T16:15:00-05:00</published><updated>2022-11-16T16:15:00-05:00</updated><id>/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment</id><content type="html" xml:base="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html"><![CDATA[<h2 id="well-talk-about-cors-in-phase-4">“We’ll talk about CORS in Phase 4”</h2>
 
