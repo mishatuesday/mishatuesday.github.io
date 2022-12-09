@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
             render json: {error: "Login invalid"}, status: :not_found
         end
     end
-{% endhighlight}
+{% endhighlight %}
 
 Notice there's no `session[:anything]` in there. So how does my front end (React for instance) know that the user is logged in? 
 
@@ -71,7 +71,7 @@ So here's my login function in React:
             toggleLoggedIn()
         })
     }
-{% endhighlight}
+{% endhighlight %}
 
 I added `toggleLoggedIn()` which sets a Boolean state variable, because I
 needed some components to re-render upon login. `localStorage.error` is so my login form can conditionally render the error message if present.
@@ -92,7 +92,7 @@ or not you are logged in, for instance:
         : null}
     </div>
     )
-{% endhighlight}
+{% endhighlight %}
 
 As my favorite fake user data account, David Pumpkins, would say: "Any questions?"
 

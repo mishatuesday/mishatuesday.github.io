@@ -1,0 +1,61 @@
+I"!<h2 id="well-talk-about-cors-in-phase-4">“We’ll talk about CORS in Phase 4”</h2>
+
+<p>…is what my instructor said when I mentioned CORS during Stand Up. CORS stands for Cross-Origin Resource Sharing, and it’s a security measure that can prevent unauthorized API access.</p>
+
+<p><em>It can also prevent <strong>authorized</strong> API access if you don’t know about it.</em></p>
+
+<p><strong>The problem in a nutshell:</strong> I had React running on port 3000 and Sinatra running on port 9292, and CORS was not set up to accept cross-origin requests. Where did I even get my <code class="language-plaintext highlighter-rouge">config.ru</code> file? I don’t remember, but <code class="language-plaintext highlighter-rouge">Rack::Cors</code> was not in it. If you are running React and a Sinatra API locally, and your data won’t show up in your React app, this may be why.</p>
+
+<p><strong>The TLer; DRier solution:</strong> My first solution (below) worked for GET requests, but not for POST requests. I learned the real, global way to fix this (rarely encountered) issue.</p>
+
+<p>Put this in your <code class="language-plaintext highlighter-rouge">config.ru</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cors</span> <span class="k">do</span>
+    <span class="n">allow</span> <span class="k">do</span>
+        <span class="n">origins</span> <span class="s1">'*'</span>
+        <span class="n">resource</span> <span class="s1">'*'</span><span class="p">,</span> <span class="ss">headers: :any</span><span class="p">,</span> <span class="ss">methods: </span><span class="p">[</span><span class="ss">:get</span><span class="p">,</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:put</span><span class="p">,</span> <span class="ss">:patch</span><span class="p">,</span> <span class="ss">:options</span><span class="p">,</span> <span class="ss">:head</span><span class="p">]</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>and this in your <code class="language-plaintext highlighter-rouge">Gemfile</code>:
+<code class="language-plaintext highlighter-rouge">gem "rack-cors"</code></p>
+
+<p>If it wasn’t there before, you probably need to run <code class="language-plaintext highlighter-rouge">bundle install</code> again.</p>
+
+<p>You <em>could</em> read the rest of this post, but why bother? If given the choice, <strong>I’d rather be coding</strong>.</p>
+
+<p><strong>TL;DR:</strong> If you have React and Ruby/Sinatra running on different ports and your data’s not showing up, try putting
+<code class="language-plaintext highlighter-rouge">response['Access-Control-Allow-Origin'] = 'http://localhost:3000'</code>
+in your Sinatra <code class="language-plaintext highlighter-rouge">get</code> block (and not on the last line of the block). It’s the least involved solution I found. <em>Of course if your React app is running on a port other than 3000, make it match.</em></p>
+
+<p>Here’s the code for one of my endpoints, with the solution in place:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">    <span class="n">get</span> <span class="s1">'/gigs/:id'</span> <span class="k">do</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">'Access-Control-Allow-Origin'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'http://localhost:3000'</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+        <span class="n">user</span><span class="p">.</span><span class="nf">gigs</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="ss">date: :ASC</span><span class="p">).</span><span class="nf">to_json</span>
+    <span class="k">end</span></code></pre></figure>
+
+<h3 id="the-background">The Background</h3>
+
+<p>I’m in Flatiron School’s Software Engineering program. Phase 1 was all
+vanilla JavaScript, which I had some experience with. Phase 2 was React, which was totally new to me.</p>
+
+<p>Now I’m in Phase 3, which is nominally the Ruby phase but it’s primarily
+focused on ActiveRecord and Sinatra, so we can build our own API in anticipation of learning Rails, which will come in Phase 4.</p>
+
+<p>I knew how to write a React app and run it locally, and I had just learned how to write and run an ActiveRecord/Sinatra API using rake. So I thought, “ok I just run my React app on port 3000 and my API on 9292 and bingo!”  …but it was <strong>NOT BINGO</strong>.</p>
+
+<p>My data didn’t show up in the browser, and I got a message that something called CORS had prevented my app from accessing my API endpoint.</p>
+
+<p>So of course I searched for the error, and found lots of complicated code, mostly based on Rails apps, that would not work for me. My instructor said that CORS becomes important when we start using Rails, and none of my cohort seemed to be having this issue.</p>
+
+<p>Luckily, I came across the idea that you can set the response authorization right in the Sinatra application controller, and it worked for me. Since it took me a while to find this solution, I decided to boost the signal with this blog post. Hopefully it helps the right person at the right time.</p>
+
+<p>Again, the thing I added was:</p>
+
+<p><code class="language-plaintext highlighter-rouge">response['Access-Control-Allow-Origin'] = 'http://localhost:3000'</code></p>
+
+<p>and you have to put it in every endpoint you set up. I didn’t say it was
+the global solution, I said it’s the least complicated.  I kind of didn’t want to write this required blog post, because I have a project due and <strong>I’d rather be coding</strong>, but if this helps even one person get their first API up and running, it’s worth it.</p>
+:ET

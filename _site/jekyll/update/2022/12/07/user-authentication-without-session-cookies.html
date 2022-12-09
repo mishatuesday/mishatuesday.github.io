@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>User Authentication Without Session Cookies | I’d Rather Be Coding</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="User Authentication Without Session Cookies" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="“Why won’t this cookie persist?”" />
+<meta property="og:description" content="“Why won’t this cookie persist?”" />
+<link rel="canonical" href="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" />
+<meta property="og:url" content="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" />
+<meta property="og:site_name" content="I’d Rather Be Coding" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-12-07T12:15:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="User Authentication Without Session Cookies" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-12-07T12:15:00-05:00","datePublished":"2022-12-07T12:15:00-05:00","description":"“Why won’t this cookie persist?”","headline":"User Authentication Without Session Cookies","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html"},"url":"/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="I'd Rather Be Coding" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">I&#39;d Rather Be Coding</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">User Authentication Without Session Cookies</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-12-07T12:15:00-05:00" itemprop="datePublished">Dec 7, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="why-wont-this-cookie-persist">“Why won’t this cookie persist?”</h2>
+
+<p>I was having trouble getting session cookies to persist in Rails. Then I
+stumbled on to localStorage</p>
+
+<p><em>Some people will tell you that using localStorage circumvents cookie
+consent laws, but this is not the case. This is not legal advice, but
+whether you can store data on a user’s equipment without asking has nothing to do with what method you’re using, and everything to do
+with whether it is</em> necessary <em>for a service or function that the user
+has requested, i.e. setting dark mode or logging in.</em></p>
+
+<p><strong>The beauty of localStorage</strong></p>
+
+<p>When a user submits a username/password combination, you create a session
+instance in your back end. In Ruby on Rails, it might look something like
+this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+    <span class="k">def</span> <span class="nf">create</span>
+        <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">email: </span><span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">authenticate</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">])</span>
+            <span class="n">render</span> <span class="ss">json: </span><span class="n">user</span><span class="p">,</span> <span class="ss">status: :ok</span>
+        <span class="k">else</span>
+            <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span><span class="ss">error: </span><span class="s2">"Login invalid"</span><span class="p">},</span> <span class="ss">status: :not_found</span>
+        <span class="k">end</span>
+    <span class="k">end</span></code></pre></figure>
+
+<p>Notice there’s no <code class="language-plaintext highlighter-rouge">session[:anything]</code> in there. So how does my front end (React for instance) know that the user is logged in?</p>
+
+<h2 id="easy">Easy</h2>
+<p>There are (at least) two ways to set a localStorage key/value pair.
+I use <code class="language-plaintext highlighter-rouge">localStorage.email = r.email</code>.
+You can also use brackete notation: <code class="language-plaintext highlighter-rouge">localStorage['email'] = r.email</code>
+When you want to get rid of it, it’s <code class="language-plaintext highlighter-rouge">localStorage.removeItem("name")</code>
+Or you can nuke everything in localStorage with <code class="language-plaintext highlighter-rouge">localStorage.clear</code>
+In my opinion, easier than dealing with session cookies. There’s no
+configuration to worry about, it just works.</p>
+
+<p>So here’s my login function in React:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    <span class="kd">function</span> <span class="nx">onLogin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000/login</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">Accept</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span>
+            <span class="p">},</span>
+            <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">formData</span><span class="p">)</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">)</span>
+                <span class="nx">localStorage</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">email</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">localStorage</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">invalid email/password combination</span><span class="dl">"</span>
+            <span class="p">}</span>
+            <span class="nx">setFormData</span><span class="p">({</span><span class="na">email</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="dl">""</span><span class="p">})</span>
+            <span class="nx">toggleLoggedIn</span><span class="p">()</span>
+        <span class="p">})</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>I added <code class="language-plaintext highlighter-rouge">toggleLoggedIn()</code> which sets a Boolean state variable, because I
+needed some components to re-render upon login. <code class="language-plaintext highlighter-rouge">localStorage.error</code> is so my login form can conditionally render the error message if present.</p>
+
+<p>Finally, my components can conditionally render elements based on whether
+or not you are logged in, for instance:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">concession</span><span class="p">.</span><span class="nx">image</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">concession</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Name</span><span class="p">:</span> <span class="p">{</span><span class="nx">concession</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Price</span><span class="p">:</span> <span class="p">{</span><span class="nx">concession</span><span class="p">.</span><span class="nx">price</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">{</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">email</span> <span class="p">?</span> 
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">deleteConcession</span><span class="p">(</span><span class="nx">concession</span><span class="p">)</span> <span class="p">}</span><span class="o">&gt;</span><span class="nx">Delete</span> <span class="nx">Concession</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">NavLink</span> <span class="nx">to</span><span class="o">=</span><span class="p">{</span><span class="s2">`/concession/</span><span class="p">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">concession</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">/EditForm`</span><span class="p">}</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">Edit Concession</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Edit</span> <span class="nx">Concession</span>
+        <span class="o">&lt;</span><span class="sr">/NavLink&gt;</span><span class="err"> 
+</span>        <span class="p">:</span> <span class="kc">null</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">)</span></code></pre></figure>
+
+<p>As my favorite fake user data account, David Pumpkins, would say: “Any questions?”</p>
+
+<p>Actually, never mind. I probably won’t answer any questions, because <strong>I’d rather be coding.</strong></p>
+
+  </div><a class="u-url" href="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">I&#39;d Rather Be Coding</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">I&#39;d Rather Be Coding</li><li><a class="u-email" href="mailto:mishatuesday@gmail.com">mishatuesday@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/mishatuesday"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">mishatuesday</span></a></li><li><a href="https://www.twitter.com/mishatuesday"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mishatuesday</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A hypnotist returning to one of his former passions: coding. You could say I&#39;ve gone from programming computers to programming people and back again.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

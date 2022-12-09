@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CORS in a Local Sinatra Development Environment | I’d Rather Be Coding</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="CORS in a Local Sinatra Development Environment" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="“We’ll talk about CORS in Phase 4”" />
+<meta property="og:description" content="“We’ll talk about CORS in Phase 4”" />
+<link rel="canonical" href="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html" />
+<meta property="og:url" content="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html" />
+<meta property="og:site_name" content="I’d Rather Be Coding" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-16T16:15:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CORS in a Local Sinatra Development Environment" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-16T16:15:00-05:00","datePublished":"2022-11-16T16:15:00-05:00","description":"“We’ll talk about CORS in Phase 4”","headline":"CORS in a Local Sinatra Development Environment","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html"},"url":"/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="I'd Rather Be Coding" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">I&#39;d Rather Be Coding</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">CORS in a Local Sinatra Development Environment</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-11-16T16:15:00-05:00" itemprop="datePublished">Nov 16, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="well-talk-about-cors-in-phase-4">“We’ll talk about CORS in Phase 4”</h2>
+
+<p>…is what my instructor said when I mentioned CORS during Stand Up. CORS stands for Cross-Origin Resource Sharing, and it’s a security measure that can prevent unauthorized API access.</p>
+
+<p><em>It can also prevent <strong>authorized</strong> API access if you don’t know about it.</em></p>
+
+<p><strong>The problem in a nutshell:</strong> I had React running on port 3000 and Sinatra running on port 9292, and CORS was not set up to accept cross-origin requests. Where did I even get my <code class="language-plaintext highlighter-rouge">config.ru</code> file? I don’t remember, but <code class="language-plaintext highlighter-rouge">Rack::Cors</code> was not in it. If you are running React and a Sinatra API locally, and your data won’t show up in your React app, this may be why.</p>
+
+<p><strong>The TLer; DRier solution:</strong> My first solution (below) worked for GET requests, but not for POST requests. I learned the real, global way to fix this (rarely encountered) issue.</p>
+
+<p>Put this in your <code class="language-plaintext highlighter-rouge">config.ru</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cors</span> <span class="k">do</span>
+    <span class="n">allow</span> <span class="k">do</span>
+        <span class="n">origins</span> <span class="s1">'*'</span>
+        <span class="n">resource</span> <span class="s1">'*'</span><span class="p">,</span> <span class="ss">headers: :any</span><span class="p">,</span> <span class="ss">methods: </span><span class="p">[</span><span class="ss">:get</span><span class="p">,</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:put</span><span class="p">,</span> <span class="ss">:patch</span><span class="p">,</span> <span class="ss">:options</span><span class="p">,</span> <span class="ss">:head</span><span class="p">]</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>and this in your <code class="language-plaintext highlighter-rouge">Gemfile</code>:
+<code class="language-plaintext highlighter-rouge">gem "rack-cors"</code></p>
+
+<p>If it wasn’t there before, you probably need to run <code class="language-plaintext highlighter-rouge">bundle install</code> again.</p>
+
+<p>You <em>could</em> read the rest of this post, but why bother? If given the choice, <strong>I’d rather be coding</strong>.</p>
+
+<p><strong>TL;DR:</strong> If you have React and Ruby/Sinatra running on different ports and your data’s not showing up, try putting
+<code class="language-plaintext highlighter-rouge">response['Access-Control-Allow-Origin'] = 'http://localhost:3000'</code>
+in your Sinatra <code class="language-plaintext highlighter-rouge">get</code> block (and not on the last line of the block). It’s the least involved solution I found. <em>Of course if your React app is running on a port other than 3000, make it match.</em></p>
+
+<p>Here’s the code for one of my endpoints, with the solution in place:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">    <span class="n">get</span> <span class="s1">'/gigs/:id'</span> <span class="k">do</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">'Access-Control-Allow-Origin'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'http://localhost:3000'</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+        <span class="n">user</span><span class="p">.</span><span class="nf">gigs</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="ss">date: :ASC</span><span class="p">).</span><span class="nf">to_json</span>
+    <span class="k">end</span></code></pre></figure>
+
+<h3 id="the-background">The Background</h3>
+
+<p>I’m in Flatiron School’s Software Engineering program. Phase 1 was all
+vanilla JavaScript, which I had some experience with. Phase 2 was React, which was totally new to me.</p>
+
+<p>Now I’m in Phase 3, which is nominally the Ruby phase but it’s primarily
+focused on ActiveRecord and Sinatra, so we can build our own API in anticipation of learning Rails, which will come in Phase 4.</p>
+
+<p>I knew how to write a React app and run it locally, and I had just learned how to write and run an ActiveRecord/Sinatra API using rake. So I thought, “ok I just run my React app on port 3000 and my API on 9292 and bingo!”  …but it was <strong>NOT BINGO</strong>.</p>
+
+<p>My data didn’t show up in the browser, and I got a message that something called CORS had prevented my app from accessing my API endpoint.</p>
+
+<p>So of course I searched for the error, and found lots of complicated code, mostly based on Rails apps, that would not work for me. My instructor said that CORS becomes important when we start using Rails, and none of my cohort seemed to be having this issue.</p>
+
+<p>Luckily, I came across the idea that you can set the response authorization right in the Sinatra application controller, and it worked for me. Since it took me a while to find this solution, I decided to boost the signal with this blog post. Hopefully it helps the right person at the right time.</p>
+
+<p>Again, the thing I added was:</p>
+
+<p><code class="language-plaintext highlighter-rouge">response['Access-Control-Allow-Origin'] = 'http://localhost:3000'</code></p>
+
+<p>and you have to put it in every endpoint you set up. I didn’t say it was
+the global solution, I said it’s the least complicated.  I kind of didn’t want to write this required blog post, because I have a project due and <strong>I’d rather be coding</strong>, but if this helps even one person get their first API up and running, it’s worth it.</p>
+
+  </div><a class="u-url" href="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">I&#39;d Rather Be Coding</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">I&#39;d Rather Be Coding</li><li><a class="u-email" href="mailto:mishatuesday@gmail.com">mishatuesday@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/mishatuesday"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">mishatuesday</span></a></li><li><a href="https://www.twitter.com/mishatuesday"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mishatuesday</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A hypnotist returning to one of his former passions: coding. You could say I&#39;ve gone from programming computers to programming people and back again.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,8 +1,152 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-25T10:18:59-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">I’d Rather Be Coding</title><subtitle>A hypnotist returning to one of his former passions: coding. You could say I've gone from programming computers to programming people and back again.</subtitle><entry><title type="html">Controlling Forms in React: Dropdowns, Checkboxes, and Radio Buttons</title><link href="http://localhost:4000/jekyll/update/2022/10/24/controlling-forms-in-react.html" rel="alternate" type="text/html" title="Controlling Forms in React: Dropdowns, Checkboxes, and Radio Buttons" /><published>2022-10-24T11:26:00-04:00</published><updated>2022-10-24T11:26:00-04:00</updated><id>http://localhost:4000/jekyll/update/2022/10/24/controlling-forms-in-react</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2022/10/24/controlling-forms-in-react.html"><![CDATA[<h1 id="controlling-text-is-easy-but-radio-buttons-are-weird">Controlling text is easy, but radio buttons are weird…</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-09T10:39:10-05:00</updated><id>/feed.xml</id><title type="html">I’d Rather Be Coding</title><subtitle>A hypnotist returning to one of his former passions: coding. You could say I've gone from programming computers to programming people and back again.</subtitle><entry><title type="html">User Authentication Without Session Cookies</title><link href="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" rel="alternate" type="text/html" title="User Authentication Without Session Cookies" /><published>2022-12-07T12:15:00-05:00</published><updated>2022-12-07T12:15:00-05:00</updated><id>/jekyll/update/2022/12/07/user-authentication-without-session-cookies</id><content type="html" xml:base="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html"><![CDATA[<h2 id="why-wont-this-cookie-persist">“Why won’t this cookie persist?”</h2>
 
-<p>OK, you already learned how to control a text field… wait, maybe you don’t. Maybe you came here because you were searching for that and I came up because I mentioned it.</p>
+<p>I was having trouble getting session cookies to persist in Rails. Then I
+stumbled on to localStorage</p>
 
-<p>OK, review of how to control a text field:</p>
+<p><em>Some people will tell you that using localStorage circumvents cookie
+consent laws, but this is not the case. This is not legal advice, but
+whether you can store data on a user’s equipment without asking has nothing to do with what method you’re using, and everything to do
+with whether it is</em> necessary <em>for a service or function that the user
+has requested, i.e. setting dark mode or logging in.</em></p>
+
+<p><strong>The beauty of localStorage</strong></p>
+
+<p>When a user submits a username/password combination, you create a session
+instance in your back end. In Ruby on Rails, it might look something like
+this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+    <span class="k">def</span> <span class="nf">create</span>
+        <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">email: </span><span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">authenticate</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">])</span>
+            <span class="n">render</span> <span class="ss">json: </span><span class="n">user</span><span class="p">,</span> <span class="ss">status: :ok</span>
+        <span class="k">else</span>
+            <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span><span class="ss">error: </span><span class="s2">"Login invalid"</span><span class="p">},</span> <span class="ss">status: :not_found</span>
+        <span class="k">end</span>
+    <span class="k">end</span></code></pre></figure>
+
+<p>Notice there’s no <code class="language-plaintext highlighter-rouge">session[:anything]</code> in there. So how does my front end (React for instance) know that the user is logged in?</p>
+
+<h2 id="easy">Easy</h2>
+<p>There are (at least) two ways to set a localStorage key/value pair.
+I use <code class="language-plaintext highlighter-rouge">localStorage.email = r.email</code>.
+You can also use brackete notation: <code class="language-plaintext highlighter-rouge">localStorage['email'] = r.email</code>
+When you want to get rid of it, it’s <code class="language-plaintext highlighter-rouge">localStorage.removeItem("name")</code>
+Or you can nuke everything in localStorage with <code class="language-plaintext highlighter-rouge">localStorage.clear</code>
+In my opinion, easier than dealing with session cookies. There’s no
+configuration to worry about, it just works.</p>
+
+<p>So here’s my login function in React:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    <span class="kd">function</span> <span class="nx">onLogin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000/login</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">Accept</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span>
+            <span class="p">},</span>
+            <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">formData</span><span class="p">)</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">)</span>
+                <span class="nx">localStorage</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">email</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">localStorage</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">invalid email/password combination</span><span class="dl">"</span>
+            <span class="p">}</span>
+            <span class="nx">setFormData</span><span class="p">({</span><span class="na">email</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="dl">""</span><span class="p">})</span>
+            <span class="nx">toggleLoggedIn</span><span class="p">()</span>
+        <span class="p">})</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>I added <code class="language-plaintext highlighter-rouge">toggleLoggedIn()</code> which sets a Boolean state variable, because I
+needed some components to re-render upon login. <code class="language-plaintext highlighter-rouge">localStorage.error</code> is so my login form can conditionally render the error message if present.</p>
+
+<p>Finally, my components can conditionally render elements based on whether
+or not you are logged in, for instance:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">    <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">concession</span><span class="p">.</span><span class="nx">image</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">concession</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Name</span><span class="p">:</span> <span class="p">{</span><span class="nx">concession</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Price</span><span class="p">:</span> <span class="p">{</span><span class="nx">concession</span><span class="p">.</span><span class="nx">price</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">{</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">email</span> <span class="p">?</span> 
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">deleteConcession</span><span class="p">(</span><span class="nx">concession</span><span class="p">)</span> <span class="p">}</span><span class="o">&gt;</span><span class="nx">Delete</span> <span class="nx">Concession</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">NavLink</span> <span class="nx">to</span><span class="o">=</span><span class="p">{</span><span class="s2">`/concession/</span><span class="p">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">concession</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">/EditForm`</span><span class="p">}</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">Edit Concession</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Edit</span> <span class="nx">Concession</span>
+        <span class="o">&lt;</span><span class="sr">/NavLink&gt;</span><span class="err"> 
+</span>        <span class="p">:</span> <span class="kc">null</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">)</span></code></pre></figure>
+
+<p>As my favorite fake user data account, David Pumpkins, would say: “Any questions?”</p>
+
+<p>Actually, never mind. I probably won’t answer any questions, because <strong>I’d rather be coding.</strong></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[“Why won’t this cookie persist?”]]></summary></entry><entry><title type="html">CORS in a Local Sinatra Development Environment</title><link href="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html" rel="alternate" type="text/html" title="CORS in a Local Sinatra Development Environment" /><published>2022-11-16T16:15:00-05:00</published><updated>2022-11-16T16:15:00-05:00</updated><id>/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment</id><content type="html" xml:base="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html"><![CDATA[<h2 id="well-talk-about-cors-in-phase-4">“We’ll talk about CORS in Phase 4”</h2>
+
+<p>…is what my instructor said when I mentioned CORS during Stand Up. CORS stands for Cross-Origin Resource Sharing, and it’s a security measure that can prevent unauthorized API access.</p>
+
+<p><em>It can also prevent <strong>authorized</strong> API access if you don’t know about it.</em></p>
+
+<p><strong>The problem in a nutshell:</strong> I had React running on port 3000 and Sinatra running on port 9292, and CORS was not set up to accept cross-origin requests. Where did I even get my <code class="language-plaintext highlighter-rouge">config.ru</code> file? I don’t remember, but <code class="language-plaintext highlighter-rouge">Rack::Cors</code> was not in it. If you are running React and a Sinatra API locally, and your data won’t show up in your React app, this may be why.</p>
+
+<p><strong>The TLer; DRier solution:</strong> My first solution (below) worked for GET requests, but not for POST requests. I learned the real, global way to fix this (rarely encountered) issue.</p>
+
+<p>Put this in your <code class="language-plaintext highlighter-rouge">config.ru</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cors</span> <span class="k">do</span>
+    <span class="n">allow</span> <span class="k">do</span>
+        <span class="n">origins</span> <span class="s1">'*'</span>
+        <span class="n">resource</span> <span class="s1">'*'</span><span class="p">,</span> <span class="ss">headers: :any</span><span class="p">,</span> <span class="ss">methods: </span><span class="p">[</span><span class="ss">:get</span><span class="p">,</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:put</span><span class="p">,</span> <span class="ss">:patch</span><span class="p">,</span> <span class="ss">:options</span><span class="p">,</span> <span class="ss">:head</span><span class="p">]</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>and this in your <code class="language-plaintext highlighter-rouge">Gemfile</code>:
+<code class="language-plaintext highlighter-rouge">gem "rack-cors"</code></p>
+
+<p>If it wasn’t there before, you probably need to run <code class="language-plaintext highlighter-rouge">bundle install</code> again.</p>
+
+<p>You <em>could</em> read the rest of this post, but why bother? If given the choice, <strong>I’d rather be coding</strong>.</p>
+
+<p><strong>TL;DR:</strong> If you have React and Ruby/Sinatra running on different ports and your data’s not showing up, try putting
+<code class="language-plaintext highlighter-rouge">response['Access-Control-Allow-Origin'] = 'http://localhost:3000'</code>
+in your Sinatra <code class="language-plaintext highlighter-rouge">get</code> block (and not on the last line of the block). It’s the least involved solution I found. <em>Of course if your React app is running on a port other than 3000, make it match.</em></p>
+
+<p>Here’s the code for one of my endpoints, with the solution in place:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">    <span class="n">get</span> <span class="s1">'/gigs/:id'</span> <span class="k">do</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">'Access-Control-Allow-Origin'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'http://localhost:3000'</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+        <span class="n">user</span><span class="p">.</span><span class="nf">gigs</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="ss">date: :ASC</span><span class="p">).</span><span class="nf">to_json</span>
+    <span class="k">end</span></code></pre></figure>
+
+<h3 id="the-background">The Background</h3>
+
+<p>I’m in Flatiron School’s Software Engineering program. Phase 1 was all
+vanilla JavaScript, which I had some experience with. Phase 2 was React, which was totally new to me.</p>
+
+<p>Now I’m in Phase 3, which is nominally the Ruby phase but it’s primarily
+focused on ActiveRecord and Sinatra, so we can build our own API in anticipation of learning Rails, which will come in Phase 4.</p>
+
+<p>I knew how to write a React app and run it locally, and I had just learned how to write and run an ActiveRecord/Sinatra API using rake. So I thought, “ok I just run my React app on port 3000 and my API on 9292 and bingo!”  …but it was <strong>NOT BINGO</strong>.</p>
+
+<p>My data didn’t show up in the browser, and I got a message that something called CORS had prevented my app from accessing my API endpoint.</p>
+
+<p>So of course I searched for the error, and found lots of complicated code, mostly based on Rails apps, that would not work for me. My instructor said that CORS becomes important when we start using Rails, and none of my cohort seemed to be having this issue.</p>
+
+<p>Luckily, I came across the idea that you can set the response authorization right in the Sinatra application controller, and it worked for me. Since it took me a while to find this solution, I decided to boost the signal with this blog post. Hopefully it helps the right person at the right time.</p>
+
+<p>Again, the thing I added was:</p>
+
+<p><code class="language-plaintext highlighter-rouge">response['Access-Control-Allow-Origin'] = 'http://localhost:3000'</code></p>
+
+<p>and you have to put it in every endpoint you set up. I didn’t say it was
+the global solution, I said it’s the least complicated.  I kind of didn’t want to write this required blog post, because I have a project due and <strong>I’d rather be coding</strong>, but if this helps even one person get their first API up and running, it’s worth it.</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[“We’ll talk about CORS in Phase 4”]]></summary></entry><entry><title type="html">Controlling Forms in React: Dropdowns, Checkboxes, and Radio Buttons</title><link href="/jekyll/update/2022/10/27/controlling-forms-in-react.html" rel="alternate" type="text/html" title="Controlling Forms in React: Dropdowns, Checkboxes, and Radio Buttons" /><published>2022-10-27T16:15:00-04:00</published><updated>2022-10-27T16:15:00-04:00</updated><id>/jekyll/update/2022/10/27/controlling-forms-in-react</id><content type="html" xml:base="/jekyll/update/2022/10/27/controlling-forms-in-react.html"><![CDATA[<h1 id="controlling-text-inputs-is-simple-but-checkboxes-and-radio-buttons-are-not-alike">Controlling text inputs is simple, but checkboxes and radio buttons are not alike…</h1>
+
+<p>OK, you already know how to control a text field… wait, maybe you don’t. Maybe you came here because you were searching for that and this blog came up because I mentioned it.</p>
+
+<p>OK, review of how to control a text field (scroll sideways to see all the code):</p>
 
 <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// you'll need useState</span>
 <span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
@@ -10,41 +154,76 @@
 <span class="kd">const</span> <span class="p">[</span><span class="nx">formField</span><span class="p">,</span> <span class="nx">setFormField</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">)</span>
 <span class="c1">// in your JSX, you use the state variable and function to set and change the field's value as the user types</span>
 <span class="o">&lt;</span><span class="nx">form</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formField</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setFormField</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span><span class="o">&gt;&lt;</span><span class="sr">/input</span><span class="err">&gt;
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formField</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setFormField</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span> <span class="sr">/</span><span class="err">&gt;
 </span><span class="o">&lt;</span><span class="sr">/form&gt;</span></code></pre></figure>
 
-<p>Of course, if you need to use that field value in a different componenet, you’ll have to pass down a function as props to get it there… but I digress.</p>
+<p>Of course, if you need to use that field value in a different component, you’ll have to pass down a function as props to get it there… but I digress.</p>
 
 <h2 id="the-real-input-types-i-wanted-to-blog-about">The real input types I wanted to blog about:</h2>
 
-<h1 id="select-radio-and-checkbox">Select, radio, and checkbox</h1>
+<h1 id="select-dropdown-radio-and-checkbox">Select (dropdown), radio, and checkbox</h1>
 
-<p>Checkboxes are easy. They’re boolean and you just add the word “checked” if true (the boolean is a state variable of course):</p>
+<p><strong>Checkboxes</strong> are simple. They’re boolean and you just add the word “checked” if true (the boolean is a state variable of course):</p>
 
-<p><code class="language-plaintext highlighter-rouge">&lt;input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e =&gt; setIsRed{!isRed}}&gt;</code></p>
+<p><code class="language-plaintext highlighter-rouge">&lt;input type="checkbox" name="colors" value="red" id="red" {isRed ? "checked" : null} onChange={e =&gt; setIsRed{!isRed}} /&gt;</code></p>
 
-<p>Selects are different in React than in HTML. In HTML you put the default selection in the <code class="language-plaintext highlighter-rouge">&lt;option&gt;</code> tag, but in React it has to go in the <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> tag:</p>
+<p>I have a console log set up in the onChange attribute for each of the following checkboxes. Go ahead and open your dev tools <em>right now</em> (command-option-j) and see what happens when you check and uncheck them:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">          <span class="o">&lt;</span><span class="nx">select</span> 
-            <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">form-control</span><span class="dl">"</span> 
-            <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">size</span><span class="dl">"</span> 
-            <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">size</span><span class="p">}</span> 
-            <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setSize</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Small</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Small</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
-</span>            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Medium</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Medium</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
-</span>            <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Large</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Large</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
-</span>          <span class="o">&lt;</span><span class="sr">/select&gt;</span></code></pre></figure>
+<p><input type="checkbox" name="test-box" onchange="console.log('the Try it! checkbox changed')" />
+<label for="test-box">Try it!</label>
+<input type="checkbox" name="other-test-box" onchange="console.log('the Mix it up! checkbox changed')" />
+<label for="other-test-box">Mix it up!</label></p>
 
-<p>I had fun figuring out radio buttons. Try it. Open your console right now.</p>
+<p>Notice how they change when you check them AND when you uncheck them… you’ll notice a difference when we do radio buttons.</p>
+<hr />
+
+<p><strong>Selects</strong> (which most people call dropdowns) are different in React than in HTML. In HTML you put the default selection in the <code class="language-plaintext highlighter-rouge">&lt;option&gt;</code> tag, but in React it has to go in the <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> tag’s value attribute (which, since you’re setting it from a state variable, makes it a controlled input):</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">import</span> <span class="p">{</span><span class="nx">useState</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">size</span><span class="p">,</span> <span class="nx">setSize</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">"</span><span class="s2">Small</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">...</span>
+  <span class="o">&lt;</span><span class="nx">select</span> 
+    <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">form-control</span><span class="dl">"</span> 
+    <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">size</span><span class="dl">"</span> 
+    <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">size</span><span class="p">}</span> 
+    <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setSize</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Small</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Small</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Medium</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Medium</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">option</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Large</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Large</span><span class="o">&lt;</span><span class="sr">/option</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="sr">/select&gt;</span></code></pre></figure>
+
+<hr />
+
+<p>I had fun figuring out <strong>radio buttons</strong>. Try it. Open your dev tools console (really! do it!) and click these radio buttons. I have console logs in the <code class="language-plaintext highlighter-rouge">onChange</code> attribute for each radio button:</p>
 
 <form>
-<input type="radio" name="kingdom" id="Animal" value="Animal" />
+<input type="radio" name="kingdom" id="Animal" value="Animal" onchange="console.log('Animal changed!')" />
 <label for="Animal">Animal</label>
-<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" />
+<input type="radio" name="kingdom" id="Vegetable" value="Vegetable" onchange="console.log('Vegetable changed!')" />
 <label for="Animal">Vegetable</label>
-<input type="radio" name="kingdom" id="Mineral" value="Mineral" />
+<input type="radio" name="kingdom" id="Mineral" value="Mineral" onchange="console.log('Mineral changed!')" />
 <label for="Animal">Mineral</label>
-</form>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Controlling text is easy, but radio buttons are weird…]]></summary></entry><entry><title type="html">Creating a Jekyll Blog for GitHub Pages</title><link href="http://localhost:4000/jekyll/update/2022/10/06/creating-a-jekyll-blog.html" rel="alternate" type="text/html" title="Creating a Jekyll Blog for GitHub Pages" /><published>2022-10-06T12:36:00-04:00</published><updated>2022-10-06T12:36:00-04:00</updated><id>http://localhost:4000/jekyll/update/2022/10/06/creating-a-jekyll-blog</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2022/10/06/creating-a-jekyll-blog.html"><![CDATA[<h2 id="a-very-hand-holding-walkthrough">A very hand-holding walkthrough…</h2>
+</form>
+
+<p>Each radio button comes from a stand-alone <code class="language-plaintext highlighter-rouge">&lt;input&gt;</code> tag, and unlike select options they are not wrapped in any containing tag. But they <em>are</em> interrelated (due to sharing the same ‘name’ attribute), so unlike a checkbox, <code class="language-plaintext highlighter-rouge">onChange</code> only happens for each button when they are selected, not deselected.</p>
+
+<p>To control radio buttons in React, you set a boolean for the <code class="language-plaintext highlighter-rouge">checked</code> attribute, based on your state variable. In our example:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">form</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">radio</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">kingdom</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">Animal</span><span class="dl">"</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Animal</span><span class="dl">"</span> <span class="nx">checked</span><span class="o">=</span><span class="p">{</span><span class="nx">kingdom</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">Animal</span><span class="dl">"</span> <span class="p">?</span> <span class="kc">true</span> <span class="p">:</span> <span class="kc">false</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setKingdom</span><span class="p">(</span><span class="dl">"</span><span class="s2">Animal</span><span class="dl">"</span><span class="p">)}</span> <span class="sr">/</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="dl">"</span><span class="s2">Animal</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Animal</span><span class="o">&lt;</span><span class="sr">/label</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">radio</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">kingdom</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">Vegetable</span><span class="dl">"</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Vegetable</span><span class="dl">"</span> <span class="nx">checked</span><span class="o">=</span><span class="p">{</span><span class="nx">kingdom</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">Vegetable</span><span class="dl">"</span> <span class="p">?</span> <span class="kc">true</span> <span class="p">:</span> <span class="kc">false</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setKingdom</span><span class="p">(</span><span class="dl">"</span><span class="s2">Vegetable</span><span class="dl">"</span><span class="p">)}</span> <span class="sr">/</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="dl">"</span><span class="s2">Animal</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Vegetable</span><span class="o">&lt;</span><span class="sr">/label</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">radio</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">kingdom</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">Mineral</span><span class="dl">"</span> <span class="nx">value</span><span class="o">=</span><span class="dl">"</span><span class="s2">Mineral</span><span class="dl">"</span> <span class="nx">checked</span><span class="o">=</span><span class="p">{</span><span class="nx">kingdom</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">Mineral</span><span class="dl">"</span> <span class="p">?</span> <span class="kc">true</span> <span class="p">:</span> <span class="kc">false</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setKingdom</span><span class="p">(</span><span class="dl">"</span><span class="s2">Mineral</span><span class="dl">"</span><span class="p">)}</span> <span class="sr">/</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="dl">"</span><span class="s2">Animal</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Mineral</span><span class="o">&lt;</span><span class="sr">/label</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/form&gt;</span></code></pre></figure>
+
+<hr />
+
+<p>The fact that every input type is handled differently in HTML and controlled differently in React can be a bit confusing, but if you play with them you
+will get the hang of it. And when you do, some other, more internally-consistent language will replace HTML and all the old websites will vanish in the night, like Adobe Flash or Swatch Internet Time.</p>
+
+<p>We could complain about the inevitable obsolescence of any tech skill, but I’d rather not complain. <strong>I’d rather be coding.</strong></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[Controlling text inputs is simple, but checkboxes and radio buttons are not alike…]]></summary></entry><entry><title type="html">Creating a Jekyll Blog for GitHub Pages</title><link href="/jekyll/update/2022/10/06/creating-a-jekyll-blog.html" rel="alternate" type="text/html" title="Creating a Jekyll Blog for GitHub Pages" /><published>2022-10-06T12:36:00-04:00</published><updated>2022-10-06T12:36:00-04:00</updated><id>/jekyll/update/2022/10/06/creating-a-jekyll-blog</id><content type="html" xml:base="/jekyll/update/2022/10/06/creating-a-jekyll-blog.html"><![CDATA[<h2 id="a-very-hand-holding-walkthrough">A very hand-holding walkthrough…</h2>
 
 <p>I make no claims that this is the <em>only way</em> or even the <em>best way</em> to create a Jekyll blog and post it to GitHub Pages. I’m just documenting the method I used as a complete newcomer to Jekyll, Git and GitHub.</p>
 
@@ -185,7 +364,7 @@
 
 <p>That’s it. Easy peasy tropical <del>storm</del> breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume. And you can be proud that you used the “if you want a challenge” solution. For me, despite the multitude of type-and-click blog platforms, <strong>I’d rather be coding.</strong></p>
 
-<p><em>Let me know f you find anything in this walkthrough that is wrong or doesn’t work as it should. My email is at the bottom of the page.</em></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A very hand-holding walkthrough…]]></summary></entry><entry><title type="html">Hello, Blogosphere!</title><link href="http://localhost:4000/jekyll/update/2022/10/05/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello, Blogosphere!" /><published>2022-10-05T11:38:45-04:00</published><updated>2022-10-05T11:38:45-04:00</updated><id>http://localhost:4000/jekyll/update/2022/10/05/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2022/10/05/welcome-to-jekyll.html"><![CDATA[<p>I actually hate the word Blogosphere, but I thought <code class="language-plaintext highlighter-rouge">Hello, World!</code> would be an even worse first post title.</p>
+<p><em>Let me know f you find anything in this walkthrough that is wrong or doesn’t work as it should. My email is at the bottom of the page.</em></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A very hand-holding walkthrough…]]></summary></entry><entry><title type="html">Hello, Blogosphere!</title><link href="/jekyll/update/2022/10/05/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello, Blogosphere!" /><published>2022-10-05T11:38:45-04:00</published><updated>2022-10-05T11:38:45-04:00</updated><id>/jekyll/update/2022/10/05/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/update/2022/10/05/welcome-to-jekyll.html"><![CDATA[<p>I actually hate the word Blogosphere, but I thought <code class="language-plaintext highlighter-rouge">Hello, World!</code> would be an even worse first post title.</p>
 
 <p><strong>TL; DR: I used to do web coding and am getting back into the industry.</strong></p>
 
