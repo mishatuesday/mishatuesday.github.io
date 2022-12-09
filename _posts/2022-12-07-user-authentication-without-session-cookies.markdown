@@ -99,6 +99,6 @@ add or edit concessions if you're logged in:
 
 As my favorite fake user data account, David Pumpkins, would say: "Any questions?"
 
-![ concert stage with lighting and a crowd of people in the audience](./rosebud-amphitheater.png "Don't judge, it's a work in progress. I'm still in bootcamp!")
+![ concert stage with lighting and a crowd of people in the audience](/assets/rosebud-amphitheater.png "Don't judge, it's a work in progress. I'm still in bootcamp!")
 
 Actually, never mind. I probably won't answer any questions, because **I'd rather be coding.**
