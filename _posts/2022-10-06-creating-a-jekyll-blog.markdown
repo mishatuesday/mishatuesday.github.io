@@ -146,6 +146,19 @@ That's it. Easy peasy tropical ~~storm~~ breezy. And now you have experience wit
 
 *Let me know f you find anything in this walkthrough that is wrong or doesn't work as it should. My email is at the bottom of the page.*
 
+## Update
+I had a later post that I pushed, and it never showed up. I tried several times, and it kept not showing up on my blog page. The new post file was in GitHub, but the post didn't appear in the menu of posts on my blog's front page. WTH?
+
+Remember that Jekyll needs to build your files into a static site every time it 
+publishes. If there are any errors anywhere (such as markdown errors), the build will fail and the new post won't appear. Here's how you find out what
+you did wrong:
+`jekyll build --trace`
+Type that in your terminal in your blog's top directory, and you will get
+a log of the build in progress. This is where, for instance, it will say that
+you have an unknown tag, like `{% endhighlight}`. <-- see I forgot the ending '%'. One small typo and the whole shebang falls down. If you don't want to deal 
+with sh** like this, you could always go to DEV or Medium... but me, **I'd rather be coding.**
+
+
 [ssh-setup]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 [stackoverflow]: https://stackoverflow.com/
 [ruby]: https://www.ruby-lang.org/en/documentation/installation/
