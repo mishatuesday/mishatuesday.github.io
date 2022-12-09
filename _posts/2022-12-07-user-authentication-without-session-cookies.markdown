@@ -8,7 +8,7 @@ categories: jekyll update
 ## "Why won't this cookie persist?"
 
 I was having trouble getting session cookies to persist in Rails. Then I
-stumbled on to localStorage
+stumbled on to localStorage.
 
 *Some people will tell you that using localStorage circumvents cookie
 consent laws, but this is not the case. This is not legal advice, but
@@ -41,11 +41,12 @@ Notice there's no `session[:anything]` in there. So how does my front end (React
 ## Easy 
 There are (at least) two ways to set a localStorage key/value pair.
 I use `localStorage.email = r.email`.
-You can also use brackete notation: `localStorage['email'] = r.email`
+You can also use bracket notation: `localStorage['email'] = r.email`.
+
 When you want to get rid of it, it's `localStorage.removeItem("name")`
 Or you can nuke everything in localStorage with `localStorage.clear`
-In my opinion, easier than dealing with session cookies. There's no
-configuration to worry about, it just works.
+In my opinion, this method is easier than dealing with session cookies. 
+There's no configuration to worry about, it just works.
 
 So here's my login function in React:
 
@@ -77,7 +78,9 @@ I added `toggleLoggedIn()` which sets a Boolean state variable, because I
 needed some components to re-render upon login. `localStorage.error` is so my login form can conditionally render the error message if present.
 
 Finally, my components can conditionally render elements based on whether
-or not you are logged in, for instance:
+or not you are logged in. There's a concessions page where you can see
+all the concessions available if you're not logged in, but you can only
+add or edit concessions if you're logged in:
 
 {% highlight javascript %}
     return (
@@ -95,5 +98,7 @@ or not you are logged in, for instance:
 {% endhighlight %}
 
 As my favorite fake user data account, David Pumpkins, would say: "Any questions?"
+
+![ concert stage with lighting and a crowd of people in the audience](/_site/assets/rosebud-amphitheater.png "Don't judge, it's a work in progress. I'm still in bootcamp!")
 
 Actually, never mind. I probably won't answer any questions, because **I'd rather be coding.**
