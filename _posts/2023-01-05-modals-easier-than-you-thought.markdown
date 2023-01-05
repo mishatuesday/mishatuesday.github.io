@@ -21,17 +21,20 @@ As an example, let's take a generic example in React. We create a state variable
 
 ```
     function mainComponent() {
+        {/* here is the state variable: */}
         const [showModal, setShowModal] = useState(false)
 
         return (
             <>
             <h1>This is the main page we're on</h1>
+            {/* here's the button that shows the modal: */}
             <button onClick={() => setShowModal(true)}>show modal</button>
             {
                 showModal ?
                 <div className="modal">
                     <div className="modal-content">
                         <p>This is the modal! It could be a separate component, but it doesn't have to be!</p>
+                        {/* here's the button that hides the modal: */}
                         <button onClick={() => setShowModal(false)}>hide modal</button>
                     </div>
                 </div>
@@ -43,7 +46,7 @@ As an example, let's take a generic example in React. We create a state variable
     }
 ```
 
-That's it for logic. Just one Boolean state value to either show it or not. The rest is done with styling. Notice there are two class names in the modal element: `modal`, and `modal-content`. You could get fancier than that and have a modal-header, modal-footer, etc. But let's keep it simple for now. The `modal` class takes up the whole page and uses rbga background color to darken the screen, and the `modal-content` class sets the content in the middle of the page:
+That's it for logic. Just one Boolean state value to either show it or not. The rest will be done with styling. Notice there are two class names in the modal element: `modal`, and `modal-content`. You could get fancier than that and have a modal-header, modal-footer, etc. But let's keep it simple for now. The `modal` class takes up the whole page and uses rbga background color with transparency to darken the screen, and the `modal-content` class sets the content in the middle of the page:
 
 ```
 .modal {
