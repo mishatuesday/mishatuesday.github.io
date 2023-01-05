@@ -155,7 +155,7 @@ you did wrong:
 `jekyll build --trace`
 Type that in your terminal in your blog's top directory, and you will get
 a log of the build in progress. This is where, for instance, it will say that
-you have an unknown tag, like `{% endhighlight}`. <-- see I forgot the ending '%'. One small typo and the whole shebang falls down. If you don't want to deal 
+you have an unknown tag, like `{ % endhighlight}`. <-- see I forgot the ending '%'. One small typo and the whole shebang falls down. If you don't want to deal 
 with sh** like this, you could always go to DEV or Medium... but me, **I'd rather be coding.**
 
 

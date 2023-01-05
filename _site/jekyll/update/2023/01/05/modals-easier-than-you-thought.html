@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Modals: Easier Than You Thought! | I’d Rather Be Coding</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Modals: Easier Than You Thought!" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You’ve seen this: you click on a button and a form seems to pop up. The rest of the screen goes dark and there’s a smallish box in the center of the page with a product view, or a form to fill out, or some breakout detail that you asked for. You click ‘done’ or whatever, and the box disappears and the screen is no longer dark. THIS WAS NOT A POPUP." />
+<meta property="og:description" content="You’ve seen this: you click on a button and a form seems to pop up. The rest of the screen goes dark and there’s a smallish box in the center of the page with a product view, or a form to fill out, or some breakout detail that you asked for. You click ‘done’ or whatever, and the box disappears and the screen is no longer dark. THIS WAS NOT A POPUP." />
+<link rel="canonical" href="/jekyll/update/2023/01/05/modals-easier-than-you-thought.html" />
+<meta property="og:url" content="/jekyll/update/2023/01/05/modals-easier-than-you-thought.html" />
+<meta property="og:site_name" content="I’d Rather Be Coding" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-05T12:15:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Modals: Easier Than You Thought!" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-05T12:15:00-05:00","datePublished":"2023-01-05T12:15:00-05:00","description":"You’ve seen this: you click on a button and a form seems to pop up. The rest of the screen goes dark and there’s a smallish box in the center of the page with a product view, or a form to fill out, or some breakout detail that you asked for. You click ‘done’ or whatever, and the box disappears and the screen is no longer dark. THIS WAS NOT A POPUP.","headline":"Modals: Easier Than You Thought!","mainEntityOfPage":{"@type":"WebPage","@id":"/jekyll/update/2023/01/05/modals-easier-than-you-thought.html"},"url":"/jekyll/update/2023/01/05/modals-easier-than-you-thought.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="I'd Rather Be Coding" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">I&#39;d Rather Be Coding</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Modals: Easier Than You Thought!</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-01-05T12:15:00-05:00" itemprop="datePublished">Jan 5, 2023
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>You’ve seen this: you click on a button and a form seems to pop up. The rest of the screen goes dark and there’s a smallish box in the center of the page with a product view, or a form to fill out, or some breakout detail that you asked for. You click ‘done’ or whatever, and the box disappears and the screen is no longer dark. THIS WAS NOT A POPUP.</p>
+
+<h2 id="it-was-a-modal">It was a modal.</h2>
+
+<p>Pronounced MODE-ull. Or mo-DOLL. Maybe mode-OWL? No one seems to agree on how to say it, but a modal is a box with content that seems to “pop up” out of nowhere and return to nowhere when you’re done with it. And they are INCREDIBLY EASY TO DO!</p>
+
+<h2 id="its-just-conditional-rendering-and-styling">It’s just conditional rendering and styling.</h2>
+
+<p>All it takes to create a modal is:
+1) Some content in an element that can be displayed and hidden based on some event
+2) Styling to darken the rest of the page and show the content in the middle of the screen.</p>
+
+<p>As an example, let’s take a generic example in React. We create a state variable set to Boolean for whether or not the modal should be visible. Then we add event listeners to toggle <code class="language-plaintext highlighter-rouge">showModal</code> between true and false:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    function mainComponent() {
+        const [showModal, setShowModal] = useState(false)
+
+        return (
+            &lt;&gt;
+            &lt;h1&gt;This is the main page we're on&lt;/h1&gt;
+            &lt;button onClick={() =&gt; setShowModal(true)}&gt;show modal&lt;/button&gt;
+            {
+                showModal ?
+                &lt;div className="modal"&gt;
+                    &lt;div className="modal-content"&gt;
+                        &lt;p&gt;This is the modal! It could be a separate component, but it doesn't have to be!&lt;/p&gt;
+                        &lt;button onClick={() =&gt; setShowModal(false)}&gt;hide modal&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                :
+                null
+            }
+            &lt;/&gt;
+        )
+    }
+</code></pre></div></div>
+
+<p>That’s it for logic. Just one Boolean state value to either show it or not. The rest is done with styling. Notice there are two class names in the modal element: <code class="language-plaintext highlighter-rouge">modal</code>, and <code class="language-plaintext highlighter-rouge">modal-content</code>. You could get fancier than that and have a modal-header, modal-footer, etc. But let’s keep it simple for now. The <code class="language-plaintext highlighter-rouge">modal</code> class takes up the whole page and uses rbga background color to darken the screen, and the <code class="language-plaintext highlighter-rouge">modal-content</code> class sets the content in the middle of the page:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 500px;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 12px;
+}
+</code></pre></div></div>
+
+<p>And that’s the essentials. Conditional display with modal styling will give you that pop-up feeling without any actual pesky pop-ups. Cuz this is not the 90’s.</p>
+
+<p>I’d like to come up with a catchy and funny way to end this blog post, but the truth is, <strong>I’d rather be coding.</strong></p>
+
+  </div><a class="u-url" href="/jekyll/update/2023/01/05/modals-easier-than-you-thought.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">I&#39;d Rather Be Coding</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">I&#39;d Rather Be Coding</li><li><a class="u-email" href="mailto:mishatuesday@gmail.com">mishatuesday@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/mishatuesday"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">mishatuesday</span></a></li><li><a href="https://www.twitter.com/mishatuesday"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">mishatuesday</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A hypnotist returning to one of his former passions: coding. You could say I&#39;ve gone from programming computers to programming people and back again.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

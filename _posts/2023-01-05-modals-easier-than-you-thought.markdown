@@ -19,7 +19,7 @@ All it takes to create a modal is:
 
 As an example, let's take a generic example in React. We create a state variable set to Boolean for whether or not the modal should be visible. Then we add event listeners to toggle `showModal` between true and false:
 
-{% highlight javascript %}
+```
     function mainComponent() {
         const [showModal, setShowModal] = useState(false)
 
@@ -41,11 +41,11 @@ As an example, let's take a generic example in React. We create a state variable
             </>
         )
     }
-{% endhighlight %}
+```
 
 That's it for logic. Just one Boolean state value to either show it or not. The rest is done with styling. Notice there are two class names in the modal element: `modal`, and `modal-content`. You could get fancier than that and have a modal-header, modal-footer, etc. But let's keep it simple for now. The `modal` class takes up the whole page and uses rbga background color to darken the screen, and the `modal-content` class sets the content in the middle of the page:
 
-{% highlight javascript %}
+```
 .modal {
   position: fixed;
   left: 0;
@@ -64,7 +64,7 @@ That's it for logic. Just one Boolean state value to either show it or not. The 
   padding: 5px;
   font-size: 12px;
 }
-{% endhighlight %}
+```
 
 And that's the essentials. Conditional display with modal styling will give you that pop-up feeling without any actual pesky pop-ups. Cuz this is not the 90's.
 

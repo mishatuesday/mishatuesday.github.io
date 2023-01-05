@@ -1,4 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-09T11:12:20-05:00</updated><id>/feed.xml</id><title type="html">I’d Rather Be Coding</title><subtitle>A hypnotist returning to one of his former passions: coding. You could say I've gone from programming computers to programming people and back again.</subtitle><entry><title type="html">User Authentication Without Session Cookies</title><link href="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" rel="alternate" type="text/html" title="User Authentication Without Session Cookies" /><published>2022-12-07T12:15:00-05:00</published><updated>2022-12-07T12:15:00-05:00</updated><id>/jekyll/update/2022/12/07/user-authentication-without-session-cookies</id><content type="html" xml:base="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html"><![CDATA[<h2 id="why-wont-this-cookie-persist">“Why won’t this cookie persist?”</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-01-05T15:56:14-05:00</updated><id>/feed.xml</id><title type="html">I’d Rather Be Coding</title><subtitle>A hypnotist returning to one of his former passions: coding. You could say I've gone from programming computers to programming people and back again.</subtitle><entry><title type="html">Modals: Easier Than You Thought!</title><link href="/jekyll/update/2023/01/05/modals-easier-than-you-thought.html" rel="alternate" type="text/html" title="Modals: Easier Than You Thought!" /><published>2023-01-05T12:15:00-05:00</published><updated>2023-01-05T12:15:00-05:00</updated><id>/jekyll/update/2023/01/05/modals-easier-than-you-thought</id><content type="html" xml:base="/jekyll/update/2023/01/05/modals-easier-than-you-thought.html"><![CDATA[<p>You’ve seen this: you click on a button and a form seems to pop up. The rest of the screen goes dark and there’s a smallish box in the center of the page with a product view, or a form to fill out, or some breakout detail that you asked for. You click ‘done’ or whatever, and the box disappears and the screen is no longer dark. THIS WAS NOT A POPUP.</p>
+
+<h2 id="it-was-a-modal">It was a modal.</h2>
+
+<p>Pronounced MODE-ull. Or mo-DOLL. Maybe mode-OWL? No one seems to agree on how to say it, but a modal is a box with content that seems to “pop up” out of nowhere and return to nowhere when you’re done with it. And they are INCREDIBLY EASY TO DO!</p>
+
+<h2 id="its-just-conditional-rendering-and-styling">It’s just conditional rendering and styling.</h2>
+
+<p>All it takes to create a modal is:
+1) Some content in an element that can be displayed and hidden based on some event
+2) Styling to darken the rest of the page and show the content in the middle of the screen.</p>
+
+<p>As an example, let’s take a generic example in React. We create a state variable set to Boolean for whether or not the modal should be visible. Then we add event listeners to toggle <code class="language-plaintext highlighter-rouge">showModal</code> between true and false:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    function mainComponent() {
+        const [showModal, setShowModal] = useState(false)
+
+        return (
+            &lt;&gt;
+            &lt;h1&gt;This is the main page we're on&lt;/h1&gt;
+            &lt;button onClick={() =&gt; setShowModal(true)}&gt;show modal&lt;/button&gt;
+            {
+                showModal ?
+                &lt;div className="modal"&gt;
+                    &lt;div className="modal-content"&gt;
+                        &lt;p&gt;This is the modal! It could be a separate component, but it doesn't have to be!&lt;/p&gt;
+                        &lt;button onClick={() =&gt; setShowModal(false)}&gt;hide modal&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                :
+                null
+            }
+            &lt;/&gt;
+        )
+    }
+</code></pre></div></div>
+
+<p>That’s it for logic. Just one Boolean state value to either show it or not. The rest is done with styling. Notice there are two class names in the modal element: <code class="language-plaintext highlighter-rouge">modal</code>, and <code class="language-plaintext highlighter-rouge">modal-content</code>. You could get fancier than that and have a modal-header, modal-footer, etc. But let’s keep it simple for now. The <code class="language-plaintext highlighter-rouge">modal</code> class takes up the whole page and uses rbga background color to darken the screen, and the <code class="language-plaintext highlighter-rouge">modal-content</code> class sets the content in the middle of the page:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 500px;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 12px;
+}
+</code></pre></div></div>
+
+<p>And that’s the essentials. Conditional display with modal styling will give you that pop-up feeling without any actual pesky pop-ups. Cuz this is not the 90’s.</p>
+
+<p>I’d like to come up with a catchy and funny way to end this blog post, but the truth is, <strong>I’d rather be coding.</strong></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[You’ve seen this: you click on a button and a form seems to pop up. The rest of the screen goes dark and there’s a smallish box in the center of the page with a product view, or a form to fill out, or some breakout detail that you asked for. You click ‘done’ or whatever, and the box disappears and the screen is no longer dark. THIS WAS NOT A POPUP.]]></summary></entry><entry><title type="html">User Authentication Without Session Cookies</title><link href="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html" rel="alternate" type="text/html" title="User Authentication Without Session Cookies" /><published>2022-12-07T12:15:00-05:00</published><updated>2022-12-07T12:15:00-05:00</updated><id>/jekyll/update/2022/12/07/user-authentication-without-session-cookies</id><content type="html" xml:base="/jekyll/update/2022/12/07/user-authentication-without-session-cookies.html"><![CDATA[<h2 id="why-wont-this-cookie-persist">“Why won’t this cookie persist?”</h2>
 
 <p>I was having trouble getting session cookies to persist in Rails. Then I
 stumbled on to localStorage.</p>
@@ -86,7 +147,7 @@ add or edit concessions if you’re logged in:</p>
 
 <p>As my favorite fake user data account, David Pumpkins, would say: “Any questions?”</p>
 
-<p><img src="/_site/assets/rosebud-amphitheater.png" alt=" concert stage with lighting and a crowd of people in the audience" title="Don't judge, it's a work in progress. I'm still in bootcamp!" /></p>
+<p><img src="https://raw.githubusercontent.com/mishatuesday/mishatuesday.github.io/main/_posts/rosebud-amphitheater.png" alt=" concert stage with lighting and a crowd of people in the audience" title="Don't judge, it's a work in progress. I'm still in bootcamp!" /></p>
 
 <p>Actually, never mind. I probably won’t answer any questions, because <strong>I’d rather be coding.</strong></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[“Why won’t this cookie persist?”]]></summary></entry><entry><title type="html">CORS in a Local Sinatra Development Environment</title><link href="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html" rel="alternate" type="text/html" title="CORS in a Local Sinatra Development Environment" /><published>2022-11-16T16:15:00-05:00</published><updated>2022-11-16T16:15:00-05:00</updated><id>/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment</id><content type="html" xml:base="/jekyll/update/2022/11/16/CORS-in-a-local-Sinatra-development-environment.html"><![CDATA[<h2 id="well-talk-about-cors-in-phase-4">“We’ll talk about CORS in Phase 4”</h2>
 
@@ -369,7 +430,19 @@ will get the hang of it. And when you do, some other, more internally-consistent
 
 <p>That’s it. Easy peasy tropical <del>storm</del> breezy. And now you have experience with Ruby, Git, GitHub, and Markdown to put on your resume. And you can be proud that you used the “if you want a challenge” solution. For me, despite the multitude of type-and-click blog platforms, <strong>I’d rather be coding.</strong></p>
 
-<p><em>Let me know f you find anything in this walkthrough that is wrong or doesn’t work as it should. My email is at the bottom of the page.</em></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A very hand-holding walkthrough…]]></summary></entry><entry><title type="html">Hello, Blogosphere!</title><link href="/jekyll/update/2022/10/05/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello, Blogosphere!" /><published>2022-10-05T11:38:45-04:00</published><updated>2022-10-05T11:38:45-04:00</updated><id>/jekyll/update/2022/10/05/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/update/2022/10/05/welcome-to-jekyll.html"><![CDATA[<p>I actually hate the word Blogosphere, but I thought <code class="language-plaintext highlighter-rouge">Hello, World!</code> would be an even worse first post title.</p>
+<p><em>Let me know f you find anything in this walkthrough that is wrong or doesn’t work as it should. My email is at the bottom of the page.</em></p>
+
+<h2 id="update">Update</h2>
+<p>I had a later post that I pushed, and it never showed up. I tried several times, and it kept not showing up on my blog page. The new post file was in GitHub, but the post didn’t appear in the menu of posts on my blog’s front page. WTH?</p>
+
+<p>Remember that Jekyll needs to build your files into a static site every time it 
+publishes. If there are any errors anywhere (such as markdown errors), the build will fail and the new post won’t appear. Here’s how you find out what
+you did wrong:
+<code class="language-plaintext highlighter-rouge">jekyll build --trace</code>
+Type that in your terminal in your blog’s top directory, and you will get
+a log of the build in progress. This is where, for instance, it will say that
+you have an unknown tag, like <code class="language-plaintext highlighter-rouge">{ % endhighlight}</code>. &lt;– see I forgot the ending ‘%’. One small typo and the whole shebang falls down. If you don’t want to deal 
+with sh** like this, you could always go to DEV or Medium… but me, <strong>I’d rather be coding.</strong></p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[A very hand-holding walkthrough…]]></summary></entry><entry><title type="html">Hello, Blogosphere!</title><link href="/jekyll/update/2022/10/05/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello, Blogosphere!" /><published>2022-10-05T11:38:45-04:00</published><updated>2022-10-05T11:38:45-04:00</updated><id>/jekyll/update/2022/10/05/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/update/2022/10/05/welcome-to-jekyll.html"><![CDATA[<p>I actually hate the word Blogosphere, but I thought <code class="language-plaintext highlighter-rouge">Hello, World!</code> would be an even worse first post title.</p>
 
 <p><strong>TL; DR: I used to do web coding and am getting back into the industry.</strong></p>
 
